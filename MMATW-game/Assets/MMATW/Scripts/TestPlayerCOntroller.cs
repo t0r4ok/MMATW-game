@@ -1,8 +1,5 @@
-﻿using System;
-using System.ComponentModel;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
 
 namespace MMATW.Scripts
 {
@@ -12,17 +9,22 @@ namespace MMATW.Scripts
         
         [Header("References")] 
         private CharacterController _controller;
+
+        [Header("Preferences")]
+        [Tooltip("Sets player speed. Remember that the speed will be multiplied by deltatime.")]
+        public float playerSpeed = 2;
         
         
         
         public float gravity = -9.81f;
         
         // Movement Vars
+        public float rotationSpeed = 3;
         private Vector3 _inputs;
         private Vector3 _velocity;
         private bool _isGrounded;
-        
-        
+        private float _horizontalRotation;
+        private Vector3 _moveDirection;
         
         private void Awake()
         {
@@ -32,12 +34,34 @@ namespace MMATW.Scripts
         private void Update()
         {
             Move();
+            Gravity();
+            Rotation();
+            
+            _isGrounded = _controller.isGrounded;
         }
 
         private void Move()
         {
+            _inputs = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+            _moveDirection = _inputs * (Time.deltaTime * playerSpeed);
             
+            _controller.Move(_moveDirection);
+        }
+
+        private void Gravity()
+        {
+            if (_isGrounded && _velocity.y < 0)
+            {
+                _velocity.y = -1f;
+            }
+            _velocity.y += gravity * Time.fixedDeltaTime;
         }
         
+        private void Rotation()
+        {
+            Quaternion newRotation;
+            newRotation = Quaternion.LookRotation(_moveDirection);
+            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * rotationSpeed);
+        }
     }
 }
