@@ -19,11 +19,13 @@ namespace MMATW.Scripts.Player
         public void DamagePlayer(int damage)
         {
             playerHealth -= damage;
+            Debug.Log($"Player damaged by {damage}:yellow:b HP!");
         }
 
         public void HealPlayer(int healAmount)
         {
             playerHealth -= healAmount;
+            Debug.Log($"Player healed by {healAmount}:green:b HP!");
         }
         
         
