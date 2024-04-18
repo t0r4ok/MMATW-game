@@ -65,7 +65,7 @@ namespace MMATW.Scripts
                 _velocity.y = 0;
             }
             _velocity.y -= gravity * Time.fixedDeltaTime;
-            _controller.Move(Vector3.down * _velocity.y * Time.fixedDeltaTime);
+            _controller.Move(Vector3.down * (_velocity.y * Time.fixedDeltaTime));
         }
         
         private void Rotation()
