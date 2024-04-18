@@ -15,5 +15,18 @@ namespace MMATW.Scripts.Player
         {
             playerHealth = maxHealth;
         }
+
+        public void DamagePlayer(int damage)
+        {
+            playerHealth -= damage;
+        }
+
+        public void HealPlayer(int healAmount)
+        {
+            playerHealth -= healAmount;
+        }
+        
+        
+        
     }
 }

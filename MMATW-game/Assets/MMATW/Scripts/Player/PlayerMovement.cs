@@ -65,11 +65,6 @@ namespace MMATW.Scripts.Player
             }
             _velocity.y -= gravity * Time.fixedDeltaTime;
             _controller.Move(Vector3.down * (_velocity.y * Time.fixedDeltaTime));
-            if (_isGrounded && _velocity.y < 0)
-            {
-                _velocity.y = -1f;
-            }
-            _velocity.y += gravity * Time.fixedDeltaTime;
         }
         
         private void Rotation()
