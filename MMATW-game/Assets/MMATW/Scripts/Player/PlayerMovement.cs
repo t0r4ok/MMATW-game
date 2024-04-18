@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
-using UnityEngine.EventSystems;
 
-namespace MMATW.Scripts
+namespace MMATW.Scripts.Player
 {
     [SelectionBase]
-    public class TestPlayerCOntroller : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour
     {
         
         [Header("References")] 
