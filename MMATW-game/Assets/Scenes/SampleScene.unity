@@ -1117,6 +1117,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpeed: 2
+  playerSprintSpeed: 4
+  stamina: 200
   gravity: -9.81
   rotationSpeed: 3
 --- !u!1 &1888690749
