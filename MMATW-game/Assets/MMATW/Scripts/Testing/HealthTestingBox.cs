@@ -1,12 +1,12 @@
 ﻿using System;
+using System.Collections;
 using MMATW.Scripts.Player;
 using UnityEngine;
 
 namespace MMATW.Scripts.Testing
 {
-    public class HealingBox : MonoBehaviour
+    public class HealthTestingBox : MonoBehaviour
     {
-        public CoolDown coolDown;
         [SerializeField] private int healAmount = 3;
         [SerializeField] private int damageAmount = 3;
         [SerializeField] private WorkMode mode = new WorkMode();
@@ -17,10 +17,9 @@ namespace MMATW.Scripts.Testing
             Heal
         }
         
-        private void OnTriggerStay(Collider other)
+        private void OnTriggerEnter(Collider other)
         {
             if (!other.gameObject.CompareTag("Player")) return;
-            if (coolDown.IsInCooldown) return;
             var player = other.GetComponent<PlayerAtributes>();
             
             switch (mode)

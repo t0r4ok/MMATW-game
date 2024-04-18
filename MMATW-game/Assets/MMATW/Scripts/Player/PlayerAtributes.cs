@@ -1,9 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 namespace MMATW.Scripts.Player
 {
     public class PlayerAtributes : MonoBehaviour
     {
+        [Header("References")] 
+        [SerializeField] private Slider uiHealthBar;
+        
+        
         [Header("Atributes")] 
         [SerializeField] private int playerHealth;
         [SerializeField] private int maxHealth = 100;
@@ -14,21 +20,33 @@ namespace MMATW.Scripts.Player
         private void Awake()
         {
             playerHealth = maxHealth;
+            uiHealthBar.maxValue = maxHealth;
         }
 
         public void DamagePlayer(int damage)
         {
             playerHealth -= damage;
-            Debug.Log($"Player damaged by {damage}:yellow:b HP!");
+            Debug.Log($"Player damaged by {damage} HP!");
+            UpdateUI();
+            
+            playerHealth = Mathf.Clamp(playerHealth, 0, maxHealth);
         }
 
         public void HealPlayer(int healAmount)
         {
-            playerHealth -= healAmount;
-            Debug.Log($"Player healed by {healAmount}:green:b HP!");
+            playerHealth += healAmount;
+            Debug.Log($"Player healed by {healAmount} HP!");
+            UpdateUI();
+
+            playerHealth = Mathf.Clamp(playerHealth, 0, maxHealth);
         }
-        
-        
+
+        private void UpdateUI()
+        {
+            if (uiHealthBar == null) return;
+            
+            uiHealthBar.value = playerHealth;
+        }
         
     }
 }
