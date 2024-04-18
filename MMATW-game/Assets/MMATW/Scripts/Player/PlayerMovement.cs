@@ -70,6 +70,9 @@ namespace MMATW.Scripts.Player
         private void Rotation()
         {
             Quaternion newRotation;
+            
+            if (_inputs.sqrMagnitude == 0) return;
+            
             newRotation = Quaternion.LookRotation(_moveDirection);
             transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * rotationSpeed);
         }
