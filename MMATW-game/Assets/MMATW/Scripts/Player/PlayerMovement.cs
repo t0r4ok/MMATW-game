@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 namespace MMATW.Scripts
 {
     [SelectionBase]
-    public class TestPlayerCOntroller : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour
     {
         
         [Header("References")] 
