@@ -51,18 +51,22 @@ namespace MMATW.Scripts.Player
                 _moveDirection = _inputs * (Time.deltaTime * playerSprintSpeed);
                 stamina -= 0.25f;
             }
-            if(stamina < 200 && !Input.GetKey(KeyCode.LeftShift))
+            if(stamina < 200 && !Input.GetKey(KeyCode.LeftShift) && _isGrounded)
             {
                 stamina += 0.25f;
             }
+            /*if (Input.GetKeyDown(KeyCode.Q) && stamina >= 100)
+            {
+                _moveDirection = _inputs * (Time.deltaTime * playerSprintSpeed * 125);
+            }*/
             _controller.Move(_moveDirection);
         }
         private void Jump()
         {
-            if (Input.GetKey(KeyCode.Space) && _isGrounded && stamina > 40)
+            if (Input.GetKey(KeyCode.Space) && _isGrounded && stamina >= 20)
             {
                 _velocity.y = -jumpForce;
-                stamina -= 80;
+                stamina -= 20;
             }
         }
 
