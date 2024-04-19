@@ -11,16 +11,17 @@ namespace MMATW.Scripts.Player
 
         [Header("Preferences")]
         [Tooltip("Sets player speed. Remember that the speed will be multiplied by deltatime.")]
-        public float playerSpeed = 2;
-        public float playerSprintSpeed = 4;
+        public float playerSpeed = 5;
+        public float playerSprintSpeed = 10;
         public float stamina = 200;
-        
-        
-        
+        public float jumpForce = 3;
+
+
+
         public float gravity = -9.81f;
         
         // Movement Vars
-        public float rotationSpeed = 3;
+        public float rotationSpeed = 10;
         private Vector3 _inputs;
         private Vector3 _velocity;
         private bool _isGrounded;
@@ -56,6 +57,14 @@ namespace MMATW.Scripts.Player
             }
             _controller.Move(_moveDirection);
         }
+        private void Jump()
+        {
+            if (Input.GetKey(KeyCode.Space) && _isGrounded && stamina > 40)
+            {
+                _velocity.y = -jumpForce;
+                stamina -= 80;
+            }
+        }
 
         private void Gravity()
         {
@@ -63,6 +72,7 @@ namespace MMATW.Scripts.Player
             {
                 _velocity.y = 0;
             }
+            Jump();
             _velocity.y -= gravity * Time.fixedDeltaTime;
             _controller.Move(Vector3.down * (_velocity.y * Time.fixedDeltaTime));
         }
