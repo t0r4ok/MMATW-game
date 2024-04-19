@@ -11,16 +11,18 @@ namespace MMATW.Scripts.Player
 
         [Header("Preferences")]
         [Tooltip("Sets player speed. Remember that the speed will be multiplied by deltatime.")]
-        public float playerSpeed = 2;
-        public float playerSprintSpeed = 4;
+        public float playerSpeed = 5;
+        public float playerSprintSpeed = 10;
+
         public float stamina = 200;
-        
-        
-        
+        public float staminaRegenerationSpeed = 0.25f;
+        public float maxStamina = 200;
+
+        public float jumpForce = 3;
         public float gravity = -9.81f;
         
         // Movement Vars
-        public float rotationSpeed = 3;
+        public float rotationSpeed = 10;
         private Vector3 _inputs;
         private Vector3 _velocity;
         private bool _isGrounded;
@@ -50,11 +52,23 @@ namespace MMATW.Scripts.Player
                 _moveDirection = _inputs * (Time.deltaTime * playerSprintSpeed);
                 stamina -= 0.25f;
             }
-            if(stamina < 200 && !Input.GetKey(KeyCode.LeftShift))
+            if(stamina < maxStamina && !Input.GetKey(KeyCode.LeftShift) && _isGrounded)
             {
-                stamina += 0.25f;
+                stamina += staminaRegenerationSpeed;
             }
+            /*if (Input.GetKeyDown(KeyCode.Q) && stamina >= 100)
+            {
+                _moveDirection = _inputs * (Time.deltaTime * playerSprintSpeed * 125);
+            }*/
             _controller.Move(_moveDirection);
+        }
+        private void Jump()
+        {
+            if (Input.GetKey(KeyCode.Space) && _isGrounded && stamina >= 20)
+            {
+                _velocity.y = -jumpForce;
+                stamina -= 20;
+            }
         }
 
         private void Gravity()
@@ -63,6 +77,7 @@ namespace MMATW.Scripts.Player
             {
                 _velocity.y = 0;
             }
+            Jump();
             _velocity.y -= gravity * Time.fixedDeltaTime;
             _controller.Move(Vector3.down * (_velocity.y * Time.fixedDeltaTime));
         }
