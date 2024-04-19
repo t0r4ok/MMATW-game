@@ -13,11 +13,12 @@ namespace MMATW.Scripts.Player
         [Tooltip("Sets player speed. Remember that the speed will be multiplied by deltatime.")]
         public float playerSpeed = 5;
         public float playerSprintSpeed = 10;
+
         public float stamina = 200;
+        public float staminaRegenerationSpeed = 0.25f;
+        public float maxStamina = 200;
+
         public float jumpForce = 3;
-
-
-
         public float gravity = -9.81f;
         
         // Movement Vars
@@ -51,9 +52,9 @@ namespace MMATW.Scripts.Player
                 _moveDirection = _inputs * (Time.deltaTime * playerSprintSpeed);
                 stamina -= 0.25f;
             }
-            if(stamina < 200 && !Input.GetKey(KeyCode.LeftShift) && _isGrounded)
+            if(stamina < maxStamina && !Input.GetKey(KeyCode.LeftShift) && _isGrounded)
             {
-                stamina += 0.25f;
+                stamina += staminaRegenerationSpeed;
             }
             /*if (Input.GetKeyDown(KeyCode.Q) && stamina >= 100)
             {
