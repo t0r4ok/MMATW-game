@@ -1,30 +1,33 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+namespace MMATW.Scripts
 {
-    public GameObject PauseMenu;
-
-    public void Quit()
+    public class GameManager : MonoBehaviour
     {
-        Application.Quit();
-    }
+        public GameObject pauseMenu;
 
-    public void StartGame()
-    {
-        SceneManager.LoadScene("SampleScene");
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        public void Quit()
         {
-            PauseMenu.SetActive(true);
+            Application.Quit();
         }
-    }
 
-    public void ExitToMainMenu()
-    {
-        SceneManager.LoadScene("MainMenu");
+        public void StartGame()
+        {
+            SceneManager.LoadScene("SampleScene");
+        }
+
+        private void Update()
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                pauseMenu.SetActive(true);
+            }
+        }
+
+        public void ExitToMainMenu()
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
     }
 }

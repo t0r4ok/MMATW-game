@@ -1662,6 +1662,9 @@ MonoBehaviour:
   playerSpeed: 5
   playerSprintSpeed: 10
   stamina: 200
+  staminaRegenerationSpeed: 0.25
+  maxStamina: 200
+  jumpForce: 3
   gravity: -1
   rotationSpeed: 10
 --- !u!114 &1858017927
