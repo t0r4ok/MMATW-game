@@ -777,7 +777,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8a998da2175c81459539ae0e033b088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolDown: {fileID: 0}
   healAmount: 3
   damageAmount: 3
   mode: 1
@@ -956,7 +955,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 41.03, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1421,7 +1420,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8a998da2175c81459539ae0e033b088, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolDown: {fileID: 0}
   healAmount: 3
   damageAmount: 3
   mode: 0
@@ -1661,8 +1659,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b474825fec977147ab0bd90256cfda0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpeed: 3
-  playerSprintSpeed: 6
+  playerSpeed: 5
+  playerSprintSpeed: 10
   stamina: 200
   gravity: -1
   rotationSpeed: 10
