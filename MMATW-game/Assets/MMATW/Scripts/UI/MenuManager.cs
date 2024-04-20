@@ -9,8 +9,10 @@ public class MenuManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            gameObject.SetActive(false);
-            PauseMenu.SetActive(true);
+            if (!PauseMenu)
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 }

@@ -6,6 +6,7 @@ namespace MMATW.Scripts
     public class GameManager : MonoBehaviour
     {
         public GameObject pauseMenu;
+        public GameObject mainManu;
 
         public void Quit()
         {
@@ -21,7 +22,10 @@ namespace MMATW.Scripts
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                pauseMenu.SetActive(true);
+                if (!mainManu)
+                {
+                    pauseMenu.SetActive(true);
+                }
             }
         }
 
