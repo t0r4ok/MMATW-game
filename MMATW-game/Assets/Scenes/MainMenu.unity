@@ -2572,6 +2572,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8050477986695109115, guid: 17de5d78bf669f449a344b2bf5bab958,
         type: 3}
+      propertyPath: cursor
+      value: 
+      objectReference: {fileID: 2800000, guid: bd7d68c4208d93b46abe33dfd37efab0, type: 3}
+    - target: {fileID: 8050477986695109115, guid: 17de5d78bf669f449a344b2bf5bab958,
+        type: 3}
       propertyPath: mainManu
       value: 
       objectReference: {fileID: 1230630514}

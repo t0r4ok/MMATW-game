@@ -5,11 +5,15 @@ namespace MMATW.Scripts.Player
 {
     public class GameManager : MonoBehaviour
     {
-        public PlayerMovement player;
-        public EnemyAI enemy;
+        [SerializeField] private Texture2D cursor;
 
         public GameObject pauseMenu;
         public GameObject mainManu;
+
+        private void Start()
+        {
+            Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
+        }
 
         public void Quit()
         {
@@ -18,8 +22,6 @@ namespace MMATW.Scripts.Player
 
         public void StartGame()
         {
-            enemy = GetComponent<EnemyAI>();
-            player = GetComponent<PlayerMovement>();
             SceneManager.LoadScene("SampleScene");
         }
 
