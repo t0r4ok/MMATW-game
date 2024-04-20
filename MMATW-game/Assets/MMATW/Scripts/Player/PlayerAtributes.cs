@@ -8,6 +8,7 @@ namespace MMATW.Scripts.Player
     {
         [Header("References")] 
         [SerializeField] private Slider uiHealthBar;
+        [SerializeField] private Slider uiStaminaBar;
         
         
         [Header("Atributes")] 
@@ -20,11 +21,13 @@ namespace MMATW.Scripts.Player
 
         private bool _isDashReady;
         private int _dashAmount;
-        
+
         private void Awake()
         {
             playerHealth = maxHealth;
             uiHealthBar.maxValue = maxHealth;
+
+            uiStaminaBar.maxValue = maxStamina;
         }
 
         public void DamagePlayer(int damage)
@@ -45,11 +48,17 @@ namespace MMATW.Scripts.Player
             playerHealth = Mathf.Clamp(playerHealth, 0, maxHealth);
         }
 
+        private void Update()
+        {
+            uiStaminaBar.value = stamina;
+        }
+
         private void UpdateUI()
         {
             if (uiHealthBar == null) return;
             
             uiHealthBar.value = playerHealth;
+            uiStaminaBar.value = stamina;
         }
         
     }

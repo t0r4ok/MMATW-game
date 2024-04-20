@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace MMATW.Scripts
+namespace MMATW.Scripts.Player
 {
     public class GameManager : MonoBehaviour
     {
+        public PlayerMovement player;
+        public EnemyAI enemy;
+
         public GameObject pauseMenu;
         public GameObject mainManu;
 
@@ -15,6 +18,8 @@ namespace MMATW.Scripts
 
         public void StartGame()
         {
+            enemy = GetComponent<EnemyAI>();
+            player = GetComponent<PlayerMovement>();
             SceneManager.LoadScene("SampleScene");
         }
 
