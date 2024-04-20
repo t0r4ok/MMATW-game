@@ -14,9 +14,9 @@ namespace MMATW.Scripts.Player
         [SerializeField] private int playerHealth;
         [SerializeField] private int maxHealth = 100;
 
-        [SerializeField] public float stamina = 200;
-        [SerializeField] public float staminaRegenerationSpeed = 0.25f;
-        [SerializeField] public float maxStamina = 200;
+        public float stamina = 200;
+        public float staminaRegenerationSpeed = 0.25f;
+        public float maxStamina = 200;
 
         private bool _isDashReady;
         private int _dashAmount;
