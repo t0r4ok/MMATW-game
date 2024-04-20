@@ -8,15 +8,11 @@ namespace MMATW.Scripts.Player
         
         [Header("References")] 
         private CharacterController _controller;
-
+        private PlayerAtributes _attributes;
         [Header("Preferences")]
         [Tooltip("Sets player speed. Remember that the speed will be multiplied by deltatime.")]
         public float playerSpeed = 5;
         public float playerSprintSpeed = 10;
-
-        public float stamina = 200;
-        public float staminaRegenerationSpeed = 0.25f;
-        public float maxStamina = 200;
 
         public float jumpForce = 3;
         public float gravity = -9.81f;
@@ -32,6 +28,7 @@ namespace MMATW.Scripts.Player
         private void Awake()
         {
             _controller = GetComponent<CharacterController>();
+            _attributes = GetComponent<PlayerAtributes>();
         }
 
         private void Update()
@@ -47,14 +44,14 @@ namespace MMATW.Scripts.Player
         {
             _inputs = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
             _moveDirection = _inputs * (Time.deltaTime * playerSpeed);
-            if (Input.GetKey(KeyCode.LeftShift) && stamina > 0)
+            if (Input.GetKey(KeyCode.LeftShift) && _attributes.stamina > 0)
             {
                 _moveDirection = _inputs * (Time.deltaTime * playerSprintSpeed);
-                stamina -= 0.25f;
+                _attributes.stamina -= 0.25f;
             }
-            if(stamina < maxStamina && !Input.GetKey(KeyCode.LeftShift) && _isGrounded)
+            if(_attributes.stamina < _attributes.maxStamina && !Input.GetKey(KeyCode.LeftShift) && _isGrounded)
             {
-                stamina += staminaRegenerationSpeed;
+                _attributes.stamina += _attributes.staminaRegenerationSpeed;
             }
             /*if (Input.GetKeyDown(KeyCode.Q) && stamina >= 100)
             {
@@ -64,10 +61,10 @@ namespace MMATW.Scripts.Player
         }
         private void Jump()
         {
-            if (Input.GetKey(KeyCode.Space) && _isGrounded && stamina >= 20)
+            if (Input.GetKey(KeyCode.Space) && _isGrounded && _attributes.stamina >= 20)
             {
                 _velocity.y = -jumpForce;
-                stamina -= 20;
+                _attributes.stamina -= 20;
             }
         }
 
