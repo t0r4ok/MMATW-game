@@ -8,7 +8,8 @@ namespace MMATW.Scripts.Player
         [SerializeField] private Texture2D cursor;
 
         public GameObject pauseMenu;
-        public GameObject mainManu;
+        public GameObject mainMenu;
+        public GameObject settingsMenu;
 
         private void Start()
         {
@@ -29,7 +30,7 @@ namespace MMATW.Scripts.Player
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if (!mainManu)
+                if (!mainMenu)
                 {
                     pauseMenu.SetActive(true);
                 }
