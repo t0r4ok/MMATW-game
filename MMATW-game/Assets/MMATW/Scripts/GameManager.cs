@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace MMATW.Scripts.Player
+namespace MMATW.Scripts
 {
     public class GameManager : MonoBehaviour
     {
@@ -9,7 +9,8 @@ namespace MMATW.Scripts.Player
 
         public GameObject pauseMenu;
         public GameObject mainManu;
-
+        
+        
         private void Start()
         {
             Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
@@ -27,12 +28,9 @@ namespace MMATW.Scripts.Player
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (!mainManu && Input.GetKeyDown(KeyCode.Escape))
             {
-                if (!mainManu)
-                {
-                    pauseMenu.SetActive(true);
-                }
+                pauseMenu.SetActive(true);
             }
         }
 
@@ -42,3 +40,4 @@ namespace MMATW.Scripts.Player
         }
     }
 }
+

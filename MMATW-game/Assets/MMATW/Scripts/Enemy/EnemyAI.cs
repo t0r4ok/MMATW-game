@@ -1,8 +1,9 @@
-﻿using UnityEngine.AI;
+﻿using System.Collections.Generic;
+using MMATW.Scripts.Player;
 using UnityEngine;
-using System.Collections.Generic;
+using UnityEngine.AI;
 
-namespace MMATW.Scripts.Player
+namespace MMATW.Scripts.Enemy
 {
     public class EnemyAI : MonoBehaviour
     {

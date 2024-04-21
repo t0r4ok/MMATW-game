@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 namespace MMATW.Scripts.Player
