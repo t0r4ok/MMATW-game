@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.Rendering;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace MMATW.Scripts.Player
@@ -59,8 +59,8 @@ namespace MMATW.Scripts.Player
 
         private void UpdateUI()
         {
-            if (uiHealthBar != null) uiHealthBar.value = playerHealth;;
-            if (uiStaminaBar != null) uiStaminaBar.value = stamina;
+            if (uiHealthBar) uiHealthBar.value = playerHealth;;
+            if (uiStaminaBar) uiStaminaBar.value = stamina;
         }
     }
 }
