@@ -1,6 +1,5 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.Events;
+﻿using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 namespace MMATW.Scripts.Player
@@ -44,7 +43,7 @@ namespace MMATW.Scripts.Player
         public void DamagePlayer(int damage)
         {
             playerHealth -= damage;
-            //Debug.Log($"Player damaged by {damage} HP!");
+            
             
             playerHealth = Mathf.Clamp(playerHealth, 0, maxHealth);
         }
@@ -52,7 +51,6 @@ namespace MMATW.Scripts.Player
         public void HealPlayer(int healAmount)
         {
             playerHealth += healAmount;
-            //Debug.Log($"Player healed by {healAmount} HP!");
             
             playerHealth = Mathf.Clamp(playerHealth, 0, maxHealth);
         }

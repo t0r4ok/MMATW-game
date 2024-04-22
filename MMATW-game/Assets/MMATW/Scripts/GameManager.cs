@@ -8,6 +8,9 @@ namespace MMATW.Scripts
         [SerializeField] private Texture2D cursor;
 
         public GameObject pauseMenu;
+        public GameObject mainMenu;
+        public GameObject settingsMenu;
+
         public GameObject mainManu;
         
         
@@ -40,4 +43,3 @@ namespace MMATW.Scripts
         }
     }
 }
-

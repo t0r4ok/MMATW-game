@@ -55,7 +55,7 @@ namespace MMATW.Scripts.Player
             {
                 _attributes.stamina += _attributes.staminaRegenerationSpeed;
             }
-            /*if (Input.GetKeyDown(KeyCode.Q) && stamina >= 100)
+            /*if (Input.GetKeyDown(KeyCode.Q) && _attributes.stamina >= 100)
             {
                 _moveDirection = _inputs * (Time.deltaTime * playerSprintSpeed * 125);
             }*/
