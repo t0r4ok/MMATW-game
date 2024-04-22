@@ -3,6 +3,8 @@
 namespace MMATW.Scripts.Player
 {
     [SelectionBase]
+    [RequireComponent(typeof(CharacterController))]
+    [RequireComponent(typeof(PlayerAtributes))]
     public class PlayerMovement : MonoBehaviour
     {
         

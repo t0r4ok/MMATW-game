@@ -7,6 +7,13 @@ namespace MMATW.Scripts.Enemy
 {
     public class EnemyAI : MonoBehaviour
     {
+        [Header("Base settings:")]
+        
+        [SerializeField] private BehaviourMode behaviourMode;
+        
+        
+        
+        [Header("Properties:")]
         private NavMeshAgent _navMeshAgent;
         private bool _isPlayerNoticed;
 
@@ -17,6 +24,13 @@ namespace MMATW.Scripts.Enemy
         public float vievAngle;
         public int damage;
 
+        enum BehaviourMode
+        {
+            SearchForPlayer,
+            AlwaysChasePlayer
+        }
+        
+        
         private void Start()
         {
             InitComponentLinks();
@@ -31,21 +45,33 @@ namespace MMATW.Scripts.Enemy
 
         private void Update()
         {
-            NoticePlayerUpdate();
-            ChaseUpdate();
-            PatrolUpdate();
+            EnemyLogicMain();
         }
-
-        private void ChaseUpdate()
+        
+        private void EnemyLogicMain()
         {
-            if (_isPlayerNoticed)
+            switch (behaviourMode) // I hope this will work...
             {
-                _navMeshAgent.destination = player.transform.position;
+                case BehaviourMode.AlwaysChasePlayer:
+                    _navMeshAgent.destination = player.transform.position;
+                    break;
+                case BehaviourMode.SearchForPlayer:
+                    SearchForPlayer();
+                    break;
             }
         }
 
+        private void SearchForPlayer()
+        {
+            NoticePlayerUpdate();
+            PatrolUpdate();
+        }
+        
+        
         private void NoticePlayerUpdate()
         {
+            if (_isPlayerNoticed) return;
+            
             var direction = player.transform.position - transform.position;
             _isPlayerNoticed = false;
 
@@ -64,12 +90,9 @@ namespace MMATW.Scripts.Enemy
 
         private void PatrolUpdate()
         {
-            if (_navMeshAgent.remainingDistance == 0)
+            if (!_isPlayerNoticed && _navMeshAgent.remainingDistance == 0)
             {
-                if (!_isPlayerNoticed)
-                {
-                    PickNewPatrolPoint();
-                }
+                PickNewPatrolPoint();
             }
         }
 

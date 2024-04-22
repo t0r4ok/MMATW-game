@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace MMATW.Scripts.Player
@@ -10,17 +12,19 @@ namespace MMATW.Scripts.Player
         [SerializeField] private Slider uiStaminaBar;
         
         
-        [Header("Atributes")] 
-        [SerializeField] private int playerHealth;
-        [SerializeField] private int maxHealth = 100;
-
+        [Header("Attributes")] 
         public float stamina = 200;
         public float staminaRegenerationSpeed = 0.25f;
         public float maxStamina = 200;
+        [SerializeField] private int playerHealth;
+        [SerializeField] private int maxHealth = 100;
+
 
         private bool _isDashReady;
         private int _dashAmount;
-
+        private UnityEvent<int> _onHealthChenge;
+        
+        
         private void Awake()
         {
             playerHealth = maxHealth;
@@ -28,12 +32,19 @@ namespace MMATW.Scripts.Player
 
             uiStaminaBar.maxValue = maxStamina;
         }
+        
+        private void Update()
+        {
+            UpdateUI();
+        }
 
+        // Regions helps to easily hide some code block at one click instead of closing them all one by one. 
+        #region ActionsWithPlayer
+        // TODO: Make all this shit work with Events to improve performance.
         public void DamagePlayer(int damage)
         {
             playerHealth -= damage;
-            Debug.Log($"Player damaged by {damage} HP!");
-            UpdateUI();
+            //Debug.Log($"Player damaged by {damage} HP!");
             
             playerHealth = Mathf.Clamp(playerHealth, 0, maxHealth);
         }
@@ -41,24 +52,17 @@ namespace MMATW.Scripts.Player
         public void HealPlayer(int healAmount)
         {
             playerHealth += healAmount;
-            Debug.Log($"Player healed by {healAmount} HP!");
-            UpdateUI();
-
+            //Debug.Log($"Player healed by {healAmount} HP!");
+            
             playerHealth = Mathf.Clamp(playerHealth, 0, maxHealth);
         }
+        #endregion
 
-        private void Update()
-        {
-            uiStaminaBar.value = stamina;
-        }
 
         private void UpdateUI()
         {
-            if (uiHealthBar == null) return;
-            
-            uiHealthBar.value = playerHealth;
-            uiStaminaBar.value = stamina;
+            if (uiHealthBar != null) uiHealthBar.value = playerHealth;;
+            if (uiStaminaBar != null) uiStaminaBar.value = stamina;
         }
-        
     }
 }
