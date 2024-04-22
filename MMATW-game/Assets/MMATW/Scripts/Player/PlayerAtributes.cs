@@ -33,7 +33,6 @@ namespace MMATW.Scripts.Player
         public void DamagePlayer(int damage)
         {
             playerHealth -= damage;
-            Debug.Log($"Player damaged by {damage} HP!");
             UpdateUI();
             
             playerHealth = Mathf.Clamp(playerHealth, 0, maxHealth);
@@ -42,7 +41,6 @@ namespace MMATW.Scripts.Player
         public void HealPlayer(int healAmount)
         {
             playerHealth += healAmount;
-            Debug.Log($"Player healed by {healAmount} HP!");
             UpdateUI();
 
             playerHealth = Mathf.Clamp(playerHealth, 0, maxHealth);
