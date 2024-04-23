@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.0913779, g: 0.14365813, b: 0.37113854, a: 1}
+  m_IndirectSpecularColor: {r: 0.09137836, g: 0.1436588, b: 0.3711407, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2962,6 +2962,7 @@ GameObject:
   - component: {fileID: 1858017925}
   - component: {fileID: 1858017927}
   - component: {fileID: 1858017926}
+  - component: {fileID: 1858017928}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -3078,7 +3079,7 @@ MonoBehaviour:
   playerSpeed: 5
   playerSprintSpeed: 10
   jumpForce: 3
-  gravity: -1
+  gravity: -1.5
   rotationSpeed: 10
 --- !u!114 &1858017927
 MonoBehaviour:
@@ -3099,6 +3100,21 @@ MonoBehaviour:
   stamina: 200
   staminaRegenerationSpeed: 0.25
   maxStamina: 200
+  mana: 200
+  manaRegenerationSpeed: 0.25
+  maxMana: 200
+--- !u!114 &1858017928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858017920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20bb9949bd979e4428648a43ed1d703f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1861532348
 GameObject:
   m_ObjectHideFlags: 0
