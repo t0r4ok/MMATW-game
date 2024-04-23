@@ -18,6 +18,9 @@ namespace MMATW.Scripts.Player
         public float stamina = 200;
         public float staminaRegenerationSpeed = 0.25f;
         public float maxStamina = 200;
+        public float mana = 200;
+        public float manaRegenerationSpeed = 0.25f;
+        public float maxMana = 200;
 
         private bool _isDashReady;
         private int _dashAmount;
