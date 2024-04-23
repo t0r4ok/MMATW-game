@@ -4,6 +4,6 @@ namespace MMATW.Scripts
 {
     public class GlobalEventManager : MonoBehaviour
     {
-        // TODO: Make this script at least do something XDD
+        // TODO: Make this script at least do something.
     }
 }
