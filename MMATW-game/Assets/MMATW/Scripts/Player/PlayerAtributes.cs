@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-using UnityEngine.Events;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 namespace MMATW.Scripts.Player
@@ -18,6 +18,9 @@ namespace MMATW.Scripts.Player
         [SerializeField] private int playerHealth;
         [SerializeField] private int maxHealth = 100;
 
+        public float mana = 200;
+        public float manaRegenerationSpeed = 0.25f;
+        public float maxMana = 200;
 
         private bool _isDashReady;
         private int _dashAmount;
@@ -55,12 +58,12 @@ namespace MMATW.Scripts.Player
             playerHealth = Mathf.Clamp(playerHealth, 0, maxHealth);
         }
         #endregion
-
-
+        
         private void UpdateUI()
         {
             if (uiHealthBar) uiHealthBar.value = playerHealth;;
             if (uiStaminaBar) uiStaminaBar.value = stamina;
         }
+        
     }
 }

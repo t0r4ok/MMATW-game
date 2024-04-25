@@ -7,8 +7,8 @@ namespace MMATW.Scripts.Player
     [RequireComponent(typeof(PlayerAtributes))]
     public class PlayerMovement : MonoBehaviour
     {
-        
-        [Header("References")] 
+
+        [Header("References")]
         private CharacterController _controller;
         private PlayerAtributes _attributes;
         [Header("Preferences")]
@@ -18,7 +18,7 @@ namespace MMATW.Scripts.Player
 
         public float jumpForce = 3;
         public float gravity = -9.81f;
-        
+
         // Movement Vars
         public float rotationSpeed = 10;
         private Vector3 _inputs;
@@ -26,7 +26,7 @@ namespace MMATW.Scripts.Player
         private bool _isGrounded;
         private float _horizontalRotation;
         private Vector3 _moveDirection;
-        
+
         private void Awake()
         {
             _controller = GetComponent<CharacterController>();
@@ -38,7 +38,7 @@ namespace MMATW.Scripts.Player
             Move();
             Gravity();
             Rotation();
-            
+
             _isGrounded = _controller.isGrounded;
         }
 
@@ -51,14 +51,17 @@ namespace MMATW.Scripts.Player
                 _moveDirection = _inputs * (Time.deltaTime * playerSprintSpeed);
                 _attributes.stamina -= 0.25f;
             }
-            if(_attributes.stamina < _attributes.maxStamina && !Input.GetKey(KeyCode.LeftShift) && _isGrounded)
+            if (_attributes.stamina < _attributes.maxStamina && !Input.GetKey(KeyCode.LeftShift) && _isGrounded)
             {
                 _attributes.stamina += _attributes.staminaRegenerationSpeed;
             }
-            /*if (Input.GetKeyDown(KeyCode.Q) && _attributes.stamina >= 100)
-            {
-                _moveDirection = _inputs * (Time.deltaTime * playerSprintSpeed * 125);
-            }*/
+            
+            _controller.Move(_moveDirection);
+        }
+        public void Dash()
+        {
+            _moveDirection = _inputs * (Time.deltaTime * playerSprintSpeed * 125);
+            _attributes.mana -= 40;
             _controller.Move(_moveDirection);
         }
         private void Jump()
