@@ -1968,6 +1968,27 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 5729968070733139417}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1190049729 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8050477986695109112, guid: 17de5d78bf669f449a344b2bf5bab958,
+    type: 3}
+  m_PrefabInstance: {fileID: 1785354816}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1190049730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190049729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59a18c1002b247b091758f18315ca2a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiHealthBar: {fileID: 583150771}
+  uiStaminaBar: {fileID: 1266110473}
+  uiManaBar: {fileID: 0}
 --- !u!1 &1206213188
 GameObject:
   m_ObjectHideFlags: 0
@@ -2778,7 +2799,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 1785354816}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1190049729}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95c2df5708cd22d45b1c826d646dfd0d, type: 3}
@@ -3051,6 +3072,8 @@ MonoBehaviour:
   jumpForce: 3
   gravity: -1
   rotationSpeed: 10
+  isWalking: 0
+  isGrounded: 0
 --- !u!114 &1858017927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3063,16 +3086,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df4a83edeca6ac24aabb47ee2917765e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiHealthBar: {fileID: 583150771}
-  uiStaminaBar: {fileID: 1266110473}
-  stamina: 200
-  staminaRegenerationSpeed: 0.25
-  maxStamina: 200
-  mana: 200
-  manaRegenerationSpeed: 0.25
-  maxMana: 200
   playerHealth: 0
   maxHealth: 100
+  mana: 200
+  maxMana: 200
+  manaRegenerationAmount: 5
+  stamina: 200
+  maxStamina: 200
+  staminaRegenerationSpeed: 5
 --- !u!114 &1858017928
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3086,7 +3107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootRotation: {x: 0, y: 0, z: 0}
-  dash: {fileID: 0}
+  dash: {fileID: 11400000, guid: db571a239e12c994798ab5976ceb21d5, type: 2}
 --- !u!1 &1861532348
 GameObject:
   m_ObjectHideFlags: 0

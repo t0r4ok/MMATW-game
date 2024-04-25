@@ -9,15 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae55d38917454fa4930b91d6d4a3d158, type: 3}
+  m_Script: {fileID: 11500000, guid: f41cab5f2af1483692860355f15b01ff, type: 3}
   m_Name: Dash
   m_EditorClassIdentifier: 
-  name: Dash
-  description: Dashing in directio.
-  prefab: {fileID: 0}
+  name: Spell Name
+  description: Spell description
   uiIcon: {fileID: 0}
-  contactDamage: 0
-  lifeDuration: 0
   manaCost: 5
-  staminaCost: 0
-  healthCost: 0
+  staminaCost: 15
+  healthCost: 15

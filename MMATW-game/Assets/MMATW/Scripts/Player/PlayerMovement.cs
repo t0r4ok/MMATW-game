@@ -5,6 +5,7 @@ namespace MMATW.Scripts.Player
     [SelectionBase]
     [RequireComponent(typeof(CharacterController))]
     [RequireComponent(typeof(PlayerAtributes))]
+    [RequireComponent(typeof(PlayerActions))]
     public class PlayerMovement : MonoBehaviour
     {
 
@@ -19,11 +20,12 @@ namespace MMATW.Scripts.Player
         public float jumpForce = 3;
         public float gravity = -9.81f;
 
-        // Movement Vars
+        [Header("Movement Vars:")]
         public float rotationSpeed = 10;
+        public bool isWalking;
+        [HideInInspector] public bool isGrounded;
         private Vector3 _inputs;
         private Vector3 _velocity;
-        private bool _isGrounded;
         private float _horizontalRotation;
         private Vector3 _moveDirection;
 
@@ -39,21 +41,30 @@ namespace MMATW.Scripts.Player
             Gravity();
             Rotation();
 
-            _isGrounded = _controller.isGrounded;
+            isGrounded = _controller.isGrounded;
+
+            
+            // don't look at this!
+            if (!isWalking && _inputs.sqrMagnitude >= 0.19f)
+            {
+                isWalking = true;
+            }
+            if (isWalking && _inputs.sqrMagnitude <= 0.19f )
+            {
+                isWalking = false;
+            }
         }
 
         private void Move()
         {
             _inputs = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
             _moveDirection = _inputs * (Time.deltaTime * playerSpeed);
+            
+            // sprint
             if (Input.GetKey(KeyCode.LeftShift) && _attributes.stamina > 0)
             {
                 _moveDirection = _inputs * (Time.deltaTime * playerSprintSpeed);
-                _attributes.stamina -= 0.25f;
-            }
-            if (_attributes.stamina < _attributes.maxStamina && !Input.GetKey(KeyCode.LeftShift) && _isGrounded)
-            {
-                _attributes.stamina += _attributes.staminaRegenerationSpeed;
+                _attributes.stamina -= 5;
             }
             
             _controller.Move(_moveDirection);
@@ -66,7 +77,7 @@ namespace MMATW.Scripts.Player
         }
         private void Jump()
         {
-            if (Input.GetKey(KeyCode.Space) && _isGrounded && _attributes.stamina >= 20)
+            if (Input.GetKey(KeyCode.Space) && isGrounded && _attributes.stamina >= 20)
             {
                 _velocity.y = -jumpForce;
                 _attributes.stamina -= 20;
@@ -75,11 +86,11 @@ namespace MMATW.Scripts.Player
 
         private void Gravity()
         {
-            if (_isGrounded)
+            if (isGrounded)
             {
                 _velocity.y = 0;
             }
-            Jump();
+            Jump(); // Why do we just jump all of a sudden ? Well, screw it, I don't care as long as it works. 
             _velocity.y -= gravity * Time.fixedDeltaTime;
             _controller.Move(Vector3.down * (_velocity.y * Time.fixedDeltaTime));
         }

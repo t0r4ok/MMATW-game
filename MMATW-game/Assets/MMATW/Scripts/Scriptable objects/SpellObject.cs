@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace MMATW.Scripts.Scriptable_objects
 {
-    public abstract class SpellObject : ScriptableObject, ISpell
+    public abstract class SpellObject : ScriptableObject
     {
         [Header("Properties:")]
         [SerializeField] private new string name = "Spell Name";
@@ -16,6 +16,6 @@ namespace MMATW.Scripts.Scriptable_objects
         [SerializeField] private int staminaCost;
         [SerializeField] private int healthCost;
         
-        public virtual void Cast(Transform parent, Vector3 position, Vector3 direction) {}
+        public virtual void Cast(GameObject parent) {}
     }
 }

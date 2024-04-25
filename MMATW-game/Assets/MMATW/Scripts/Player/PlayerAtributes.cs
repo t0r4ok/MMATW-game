@@ -1,51 +1,50 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.UI;
+using UnityEngine.Serialization;
+
 
 namespace MMATW.Scripts.Player
 {
     public class PlayerAtributes : MonoBehaviour
     {
-        [Header("References")] 
-        [SerializeField] private Slider uiHealthBar;
-        [SerializeField] private Slider uiStaminaBar;
-        
+        private PlayerMovement _movement;
         
         [Header("Attributes")] 
-        public float stamina = 200;
-        public float staminaRegenerationSpeed = 0.25f;
-        public float maxStamina = 200;
-        public float mana = 200;
-        public float manaRegenerationSpeed = 0.25f;
-        public float maxMana = 200;
-        [SerializeField] private int playerHealth;
+        // TBA
+        
+        [Header("Health:")]
+        public int playerHealth;
         [SerializeField] private int maxHealth = 100;
-
-
+        
+        [Header("Mana:")]
+        public int mana = 200;
+        public int maxMana = 200;
+        [SerializeField] private int manaRegenerationAmount = 5;
+        
+        [Header("Stamina:")]
+        public int stamina = 200;
+        public int maxStamina = 200;
+        [SerializeField] private int staminaRegenerationSpeed = 5;
+        
+        //[Header("Other")]
         private bool _isDashReady;
         private int _dashAmount;
-        private UnityEvent<int> _onHealthChenge;
         
         
         private void Awake()
         {
+            _movement = GetComponent<PlayerMovement>();
+            
             playerHealth = maxHealth;
-            uiHealthBar.maxValue = maxHealth;
-
-            uiStaminaBar.maxValue = maxStamina;
+            stamina = maxStamina;
         }
 
         private void Start()
         {
             StartCoroutine(RegenMana());
+            StartCoroutine(RegenStamina());
         }
-
-
-        private void Update()
-        {
-            UpdateUI();
-        }
+        
 
         // Regions helps to easily hide some code block at one click instead of closing them all one by one. 
         #region ActionsWithPlayer
@@ -63,27 +62,33 @@ namespace MMATW.Scripts.Player
             playerHealth += healAmount;
             
             playerHealth = Mathf.Clamp(playerHealth, 0, maxHealth);
+            
+            GlobalEventManager.SendHealthChanged(playerHealth);
         }
         #endregion
 
 
         private IEnumerator RegenMana()
         {
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(3f);
             
-            if (mana < maxMana)
+            if (mana < maxMana) // TODO: Make a states to casting.
             {
-                mana += manaRegenerationSpeed;
+                mana += manaRegenerationAmount;
             }
+            GlobalEventManager.SendManahChanged(mana); // Yep, every call. I thought that it would be more stable. 
         }
-        
-        
-        
-        
-        private void UpdateUI()
+
+        private IEnumerator RegenStamina()
         {
-            if (uiHealthBar) uiHealthBar.value = playerHealth;;
-            if (uiStaminaBar) uiStaminaBar.value = stamina;
+            yield return new WaitForSeconds(0.3f);
+            
+            if (stamina < maxStamina && !_movement.isWalking)
+            {
+                stamina += staminaRegenerationSpeed;
+            }
+            GlobalEventManager.SendStaminaChanged(stamina); // Yep, every call. I thought that it would be more stable. 
         }
+        
     }
 }

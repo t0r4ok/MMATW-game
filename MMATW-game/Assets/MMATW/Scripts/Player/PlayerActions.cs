@@ -62,7 +62,7 @@ namespace MMATW.Scripts.Player
         {
             if (Input.GetKeyDown(KeyCode.Alpha1) && _attributes.mana >= 40)
             {
-                
+                dash.Cast(this.gameObject);
             }
         }
         
