@@ -1,11 +1,10 @@
-using MMATW.Scripts.Interfaces;
 using UnityEngine;
 
 namespace MMATW.Scripts.Scriptable_objects
 {
     public abstract class SpellObject : ScriptableObject
     {
-        [Header("Properties:")]
+        [Header("UI:")]
         [SerializeField] private new string name = "Spell Name";
         [SerializeField] private string description = "Spell description";
         

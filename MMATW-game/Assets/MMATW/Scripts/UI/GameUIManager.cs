@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,8 +13,8 @@ namespace MMATW.Scripts.UI
         private void Awake()
         {
             GlobalEventManager.OnHealthChange.AddListener(UpdateHealthUI);
-            GlobalEventManager.OnManaChange.AddListener(UpdateStaminaUI);
-            GlobalEventManager.OnStaminaChange.AddListener(UpdateManaUI);
+            GlobalEventManager.OnStaminaChange.AddListener(UpdateStaminaUI);
+            GlobalEventManager.OnManaChange.AddListener(UpdateManaUI);
         }
 
 
@@ -31,7 +30,7 @@ namespace MMATW.Scripts.UI
         }
         private void UpdateManaUI(int playerMana)
         {
-            if (uiManaBar) uiStaminaBar.value = playerMana;
+            if (uiManaBar) uiManaBar.value = playerMana;
         }
 
         

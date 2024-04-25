@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -21,7 +20,7 @@ namespace MMATW.Scripts
         }
         public static void SendStaminaChanged(int playerStamina)
         {
-            OnManaChange.Invoke(playerStamina);
+            OnStaminaChange.Invoke(playerStamina);
         }
         public static void SendManahChanged(int playerMana)
         {
