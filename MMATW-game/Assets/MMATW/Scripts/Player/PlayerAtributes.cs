@@ -1,5 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.Rendering;
+﻿using System;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace MMATW.Scripts.Player
@@ -34,7 +36,13 @@ namespace MMATW.Scripts.Player
 
             uiStaminaBar.maxValue = maxStamina;
         }
-        
+
+        private void Start()
+        {
+            StartCoroutine(RegenMana());
+        }
+
+
         private void Update()
         {
             UpdateUI();
@@ -42,7 +50,7 @@ namespace MMATW.Scripts.Player
 
         // Regions helps to easily hide some code block at one click instead of closing them all one by one. 
         #region ActionsWithPlayer
-        // TODO: Make all this shit work with Events to improve performance.
+        // TODO: Make all this shit work with Events.
         public void DamagePlayer(int damage)
         {
             playerHealth -= damage;
@@ -58,6 +66,20 @@ namespace MMATW.Scripts.Player
             playerHealth = Mathf.Clamp(playerHealth, 0, maxHealth);
         }
         #endregion
+
+
+        private IEnumerator RegenMana()
+        {
+            yield return new WaitForSeconds(3);
+            
+            if (mana < maxMana)
+            {
+                mana += manaRegenerationSpeed;
+            }
+        }
+        
+        
+        
         
         private void UpdateUI()
         {

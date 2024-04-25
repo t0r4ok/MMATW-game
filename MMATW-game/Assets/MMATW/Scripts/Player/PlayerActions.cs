@@ -1,4 +1,5 @@
 using System;
+using MMATW.Scripts.Scriptable_objects;
 using UnityEngine;
 
 namespace MMATW.Scripts.Player
@@ -8,7 +9,17 @@ namespace MMATW.Scripts.Player
     public class PlayerActions : MonoBehaviour
     { 
         [SerializeField] private Vector3 shootRotation;
+        [SerializeField] private SpellObject dash;
         
+        private PlayerAtributes _attributes;
+        
+        
+        
+        
+        private void Awake()
+        {
+            _attributes = GetComponent<PlayerAtributes>();
+        }
         
         private void Update()
         {
@@ -41,6 +52,18 @@ namespace MMATW.Scripts.Player
         private void KillPlayer()
         {
             print("PLAYER IS DEAD!");
+        }
+
+        private void ManaCheck()
+        {
+        }
+
+        private void Dash()
+        {
+            if (Input.GetKeyDown(KeyCode.Alpha1) && _attributes.mana >= 40)
+            {
+                dash.SpellAction(gameObject);
+            }
         }
         
         

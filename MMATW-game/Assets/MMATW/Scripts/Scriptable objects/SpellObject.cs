@@ -20,5 +20,9 @@ namespace MMATW.Scripts.Scriptable_objects
         [SerializeField] private int staminaCost;
         [SerializeField] private int healthCost;
         
+        public virtual void SpellAction(GameObject parent) {}
+        public virtual void SpellLifeEnded() {}
+
+        
     }
 }
