@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae55d38917454fa4930b91d6d4a3d158, type: 3}
   m_Name: Dash
   m_EditorClassIdentifier: 
-  name: Spell Name
-  description: Spell description
+  name: Dash
+  description: Dashing in directio.
   prefab: {fileID: 0}
   uiIcon: {fileID: 0}
   contactDamage: 0
