@@ -14,10 +14,14 @@ namespace MMATW.Scripts.Player
         public PlayerAtributes playerAtributes;
 
         public float vievAngle;
+        public bool _isVisible;
         public int damage;
+        public float attackColldown;
+        private float _attackColldown;
 
         private void Start()
         {
+            _attackColldown = attackColldown;
             InitComponentLinks();
             PickNewPatrolPoint();
         }
@@ -30,9 +34,24 @@ namespace MMATW.Scripts.Player
 
         private void Update()
         {
+            _attackColldown -= Time.deltaTime;
             NoticePlayerUpdate();
             ChaseUpdate();
             PatrolUpdate();
+        }
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.TryGetComponent(out PlayerMovement playerMovement))
+            {
+                if (_isVisible)
+                {
+                    if (_attackColldown <= 0)
+                    {
+                        playerAtributes.DamagePlayer(damage);
+                        _attackColldown = attackColldown;
+                    }
+                }
+            }
         }
 
         private void ChaseUpdate()
@@ -42,11 +61,11 @@ namespace MMATW.Scripts.Player
                 _navMeshAgent.destination = player.transform.position;
             }
         }
-
         private void NoticePlayerUpdate()
         {
             var direction = player.transform.position - transform.position;
             _isPlayerNoticed = false;
+            _isVisible = false;
 
             if (Vector3.Angle(transform.forward, direction) < vievAngle)
             {
@@ -56,6 +75,7 @@ namespace MMATW.Scripts.Player
                     if (hit.collider.gameObject == player.gameObject)
                     {
                         _isPlayerNoticed = true;
+                        _isVisible = true;
                     }
                 }
             }
