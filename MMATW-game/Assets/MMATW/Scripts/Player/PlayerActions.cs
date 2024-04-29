@@ -11,21 +11,21 @@ namespace MMATW.Scripts.Player
         [Header("Properties:")] 
         public List<SpellObject> spells;
         
-        [SerializeField] private Vector3 shootRotation;
+        private Vector3 _shootRotation;
         [SerializeField] private SpellObject dash;
         
-        private PlayerAtributes _attributes;
+        private PlayerAttributes _attributes;
         
         private void Awake()
         {
-            _attributes = GetComponent<PlayerAtributes>();
+            _attributes = GetComponent<PlayerAttributes>();
         }
         
         private void Update()
         {
             if (Input.GetKeyDown(KeyCode.F)) Shoot();
             
-            if (Input.GetKeyDown(KeyCode.Alpha1) && _attributes.mana >= 40)
+            if (Input.GetKeyDown(KeyCode.Alpha1) && _attributes.playerMana >= 40)
             {
                 dash.Cast(gameObject);
             }

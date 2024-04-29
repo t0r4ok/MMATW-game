@@ -2,17 +2,17 @@ using UnityEngine;
 
 namespace MMATW.Scripts.Tools
 {
-    public class Singleton<S> : MonoBehaviour where S : Component
+    public class Singleton<TS> : MonoBehaviour where TS : Component
     {
-        private static S _instance;
+        private static TS _instance;
 
-        public static S Instance
+        public static TS Instance
         {
             get
             {
                 if (_instance == null)
                 {
-                    S[] array = Object.FindObjectsOfType(typeof(S)) as S[];
+                    TS[] array = Object.FindObjectsOfType(typeof(TS)) as TS[];
                     if (array.Length != 0)
                     {
                         _instance = array[0];
@@ -20,15 +20,15 @@ namespace MMATW.Scripts.Tools
 
                     if (array.Length > 1)
                     {
-                        Debug.LogError($"There is more than one {typeof(S).Name} in the scene.");
+                        Debug.LogError($"There is more than one {typeof(TS).Name} in the scene.");
                     }
 
                     if (_instance == null)
                     {
                         _instance = new GameObject
                         {
-                            name = $"_{typeof(S).Name}"
-                        }.AddComponent<S>();
+                            name = $"_{typeof(TS).Name}"
+                        }.AddComponent<TS>();
                     }
                 }
 

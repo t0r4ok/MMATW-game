@@ -8,9 +8,7 @@ namespace MMATW.Scripts.Enemy
     public class EnemyAI : MonoBehaviour
     {
         [Header("Base settings:")]
-        
         [SerializeField] private BehaviourMode behaviourMode;
-        
         
         
         [Header("Properties:")]
@@ -19,7 +17,7 @@ namespace MMATW.Scripts.Enemy
 
         public List<Transform> patrolPoints;
         public PlayerMovement player;
-        public PlayerAtributes playerAtributes;
+        public PlayerAttributes playerAtributes;
 
         public float vievAngle;
         public int damage;
@@ -40,7 +38,7 @@ namespace MMATW.Scripts.Enemy
         private void InitComponentLinks()
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
-            playerAtributes = GetComponent<PlayerAtributes>();
+            playerAtributes = GetComponent<PlayerAttributes>();
         }
 
         private void Update()

@@ -1,22 +1,24 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace MMATW.Scripts.Player
 {
     [SelectionBase]
     [RequireComponent(typeof(CharacterController))]
-    [RequireComponent(typeof(PlayerAtributes))]
+    [RequireComponent(typeof(PlayerAttributes))]
     [RequireComponent(typeof(PlayerActions))]
     public class PlayerMovement : MonoBehaviour
     {
 
         [Header("References")]
         private CharacterController _controller;
-        private PlayerAtributes _attributes;
+        private PlayerAttributes _attributes;
         [Header("Preferences")]
         [Tooltip("Sets player speed. Remember that the speed will be multiplied by deltatime.")]
         public float playerSpeed = 5;
         public float playerSprintSpeed = 10;
-
+        [SerializeField] private float staminaUsage = 5f;
+        
         public float jumpForce = 3;
         public float gravity = -9.81f;
 
@@ -32,7 +34,7 @@ namespace MMATW.Scripts.Player
         private void Awake()
         {
             _controller = GetComponent<CharacterController>();
-            _attributes = GetComponent<PlayerAtributes>();
+            _attributes = GetComponent<PlayerAttributes>();
         }
 
         private void Update()
@@ -61,26 +63,31 @@ namespace MMATW.Scripts.Player
             _moveDirection = _inputs * (Time.deltaTime * playerSpeed);
             
             // sprint
-            if (Input.GetKey(KeyCode.LeftShift) && _attributes.stamina > 0)
+            if (Input.GetKey(KeyCode.LeftShift) && _attributes.playerStamina > 0)
             {
+                var stamina = (staminaUsage / 1.5f) * Time.deltaTime;
+                
                 _moveDirection = _inputs * (Time.deltaTime * playerSprintSpeed);
-                _attributes.stamina -= 5;
+                _attributes.TakeStamina(stamina);
+                
             }
-            
+
             _controller.Move(_moveDirection);
         }
+        
+        
         public void Dash()
         {
             _moveDirection = _inputs * (Time.deltaTime * playerSprintSpeed * 125);
-            _attributes.mana -= 40;
+            _attributes.TakeMana(40);
             _controller.Move(_moveDirection);
         }
         private void Jump()
         {
-            if (Input.GetKey(KeyCode.Space) && isGrounded && _attributes.stamina >= 20)
+            if (Input.GetKey(KeyCode.Space) && isGrounded && _attributes.playerStamina >= 20)
             {
                 _velocity.y = -jumpForce;
-                _attributes.stamina -= 20;
+                _attributes.TakeStamina(20);
             }
         }
 
