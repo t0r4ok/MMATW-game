@@ -757,8 +757,10 @@ MonoBehaviour:
   playerAtributes: {fileID: 1858017927}
   vievAngle: 90
   _isVisible: 0
-  damage: 30
-  attackColldown: 1
+  boostSpeed: 10
+  boostDistance: 3
+  damage: 20
+  attackColldown: 0.5
 --- !u!4 &417964342
 Transform:
   m_ObjectHideFlags: 0

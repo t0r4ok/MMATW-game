@@ -15,6 +15,10 @@ namespace MMATW.Scripts.Player
 
         public float vievAngle;
         public bool _isVisible;
+
+        public float boostSpeed;
+        public float boostDistance;
+
         public int damage;
         public float attackColldown;
         private float _attackColldown;
@@ -29,7 +33,6 @@ namespace MMATW.Scripts.Player
         private void InitComponentLinks()
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
-            playerAtributes = GetComponent<PlayerAtributes>();
         }
 
         private void Update()
@@ -38,6 +41,7 @@ namespace MMATW.Scripts.Player
             NoticePlayerUpdate();
             ChaseUpdate();
             PatrolUpdate();
+            BoostSpeedUpdate();
         }
         private void OnTriggerStay(Collider other)
         {
@@ -95,6 +99,20 @@ namespace MMATW.Scripts.Player
         public void PickNewPatrolPoint()
         {
             _navMeshAgent.destination = patrolPoints[Random.Range(0, patrolPoints.Count)].position;
+        }
+        private void BoostSpeedUpdate()
+        {
+            _navMeshAgent.speed = 5;
+            if (_isPlayerNoticed)
+            {
+                _navMeshAgent.destination = player.transform.position;
+                float distance = Vector3.Distance(transform.position, player.transform.position);
+                if (distance > boostDistance)
+                {
+                    _navMeshAgent.speed = boostSpeed;
+                }
+            }
+
         }
     }
 }
