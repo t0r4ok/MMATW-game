@@ -758,7 +758,7 @@ MonoBehaviour:
   vievAngle: 90
   _isVisible: 0
   boostSpeed: 10
-  boostDistance: 3
+  boostDistance: 7.5
   damage: 20
   attackColldown: 0.5
 --- !u!4 &417964342
