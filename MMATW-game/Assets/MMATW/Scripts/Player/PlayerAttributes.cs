@@ -105,6 +105,10 @@ namespace MMATW.Scripts.Player
         }
         #endregion
 
+        #region SideAutoActions
+
+        
+
         private IEnumerator RegenStamina(float regenAmount, float regenDelay)
         {
             while (true) // Repeat indefinitely. 
@@ -130,5 +134,6 @@ namespace MMATW.Scripts.Player
                 yield return new WaitForSeconds(regenDelay);
             }
         }
+        #endregion
     }
 }

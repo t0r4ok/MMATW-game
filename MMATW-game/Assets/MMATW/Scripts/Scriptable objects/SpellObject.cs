@@ -11,10 +11,10 @@ namespace MMATW.Scripts.Scriptable_objects
         [SerializeField] private Sprite uiIcon;
         
         [Header("Casting costs:")]
-        [SerializeField] private int manaCost = 5;
-        [SerializeField] private int staminaCost;
-        [SerializeField] private int healthCost;
+        public int manaCost = 5;
+        public int staminaCost;
+        public int healthCost;
         
-        public virtual void Cast(GameObject parent) {}
+        public virtual void Cast(GameObject parent, Transform pos) {}
     }
 }

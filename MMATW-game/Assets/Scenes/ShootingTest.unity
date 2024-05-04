@@ -585,8 +585,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 246761073}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.0050297, y: -16.274117, z: 10.895397}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 366469653}
@@ -877,7 +877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21d8d9132be32974ca453052eb4f3964, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  behaviourMode: 0
+  behaviourMode: 1
   patrolPoints:
   - {fileID: 2100474306}
   - {fileID: 1414786012}
@@ -1506,6 +1506,50 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &748415156
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 748415157}
+  - component: {fileID: 748415158}
+  m_Layer: 0
+  m_Name: SpellCaster
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &748415157
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748415156}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1858017924}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &748415158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 748415156}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00773130055540b78acfdc5e7ac0f929, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetPoint: {fileID: 0}
 --- !u!1 &774745993
 GameObject:
   m_ObjectHideFlags: 0
@@ -3206,6 +3250,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 37845930}
+  - {fileID: 748415157}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3241,6 +3286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 5
   playerSprintSpeed: 10
+  staminaUsage: 15
   jumpForce: 3
   gravity: -1
   rotationSpeed: 10
@@ -3282,7 +3328,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 584b0ac9971941d39fd4efd9945419c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spells: []
+  selectedSpell: {fileID: 0}
+  spells:
+  - {fileID: 11400000, guid: b21ec36a4116d804ab5cdd83657865a8, type: 2}
   dash: {fileID: 11400000, guid: db571a239e12c994798ab5976ceb21d5, type: 2}
 --- !u!1 &1861532348
 GameObject:

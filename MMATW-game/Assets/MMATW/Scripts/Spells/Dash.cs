@@ -7,7 +7,7 @@ namespace MMATW.Scripts.Spells
     [CreateAssetMenu(menuName = "Spells/Dash", fileName = "New Dash Spell")]
     public class Dash : SpellObject
     {
-        public override void Cast(GameObject parent)
+        public override void Cast(GameObject parent, Transform pos)
         {
             var playerMovement = parent.GetComponent<PlayerMovement>();
 

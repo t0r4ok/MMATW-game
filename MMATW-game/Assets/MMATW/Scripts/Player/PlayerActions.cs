@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using MMATW.Scripts.Scriptable_objects;
+using UnityEditor.UI;
 using UnityEngine;
 
 namespace MMATW.Scripts.Player
@@ -8,32 +9,46 @@ namespace MMATW.Scripts.Player
         // interacting with object, preparing spells, clearing prepared spells etc. 
     public class PlayerActions : MonoBehaviour
     {
-        [Header("Properties:")] 
+        [Header("Spells:")] 
+        public SpellObject selectedSpell;
+        [Space]
         public List<SpellObject> spells;
         
-        private Vector3 _shootRotation;
+        [Header("Spell-Actions")]
         [SerializeField] private SpellObject dash;
+
+        [Header("Other:")]
+        private Vector3 _shootRotation;
         
         private PlayerAttributes _attributes;
+        private GameObject _projectileSpawner;
         
+
         private void Awake()
         {
             _attributes = GetComponent<PlayerAttributes>();
+            selectedSpell = spells[0]; // Just for testing.
         }
         
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.F)) Shoot();
+            Dash(); 
             
-            if (Input.GetKeyDown(KeyCode.Alpha1) && _attributes.playerMana >= 40)
-            {
-                dash.Cast(gameObject);
-            }
+            if (Input.GetKeyDown(KeyCode.F)) PerformSpellCast();
+            
+   
         }
 
-        private void Shoot()
+        // ReSharper disable Unity.PerformanceAnalysis
+        private void PerformSpellCast()
         {
+            if (selectedSpell == null) return;
             
+            
+            if (_attributes.playerMana >= selectedSpell.manaCost)
+            {
+                selectedSpell.Cast(gameObject, transform);
+            }
         }
 
         private void PrepareSpell()
@@ -60,9 +75,13 @@ namespace MMATW.Scripts.Player
         {
         }
 
+        // ReSharper disable Unity.PerformanceAnalysis
         private void Dash()
         {
-            
+            if (Input.GetKeyDown(KeyCode.Alpha1) && _attributes.playerMana >= 40)
+            {
+                dash.Cast(gameObject, transform);
+            }
         }
     }
 }

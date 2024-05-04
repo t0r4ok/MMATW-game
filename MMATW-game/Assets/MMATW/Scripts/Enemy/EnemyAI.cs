@@ -38,7 +38,6 @@ namespace MMATW.Scripts.Enemy
         private void InitComponentLinks()
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
-            playerAtributes = GetComponent<PlayerAttributes>();
         }
 
         private void Update()
