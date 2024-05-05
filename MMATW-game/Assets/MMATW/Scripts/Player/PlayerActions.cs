@@ -42,10 +42,15 @@ namespace MMATW.Scripts.Player
         {
             if (selectedSpell == null) return;
             
+            Vector3 direction = gameObject.transform.position;
+            direction = Vector3.Scale(direction, new Vector3(1.5f, 1.5f, 0f));
+            direction.Normalize();
+            
             
             if (_attributes.playerMana >= selectedSpell.manaCost)
             {
-                selectedSpell.Cast(gameObject, _spellCaster.transform);
+                _attributes.TakeMana(selectedSpell.manaCost);
+                selectedSpell.Cast(_spellCaster.transform, _spellCaster.transform.position + direction, direction);
             }
         }
 
@@ -78,7 +83,7 @@ namespace MMATW.Scripts.Player
         {
             if (Input.GetKeyDown(KeyCode.Alpha1) && _attributes.playerMana >= 40)
             {
-                dash.Cast(gameObject, transform);
+                dash.Cast(transform, transform.position, Vector3.zero);
             }
         }
     }

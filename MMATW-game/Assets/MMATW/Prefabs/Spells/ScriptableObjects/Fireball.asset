@@ -12,10 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f89de96e14949abbefe07344e6c8ccf, type: 3}
   m_Name: Fireball
   m_EditorClassIdentifier: 
-  name: Fireball
-  description: Default fireball
+  name: Spell Name
+  description: Spell description
   uiIcon: {fileID: 0}
   manaCost: 5
   staminaCost: 0
   healthCost: 0
-  prefab: {fileID: 5597149410804506533, guid: 422877b02b968394dbc643078508d839, type: 3}
+  spellPrefab: {fileID: 0}
+  damage: 5
+  projectileVelocity: 0

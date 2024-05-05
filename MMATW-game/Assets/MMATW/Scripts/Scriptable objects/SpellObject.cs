@@ -15,6 +15,6 @@ namespace MMATW.Scripts.Scriptable_objects
         public int staminaCost;
         public int healthCost;
         
-        public virtual void Cast(GameObject parent, Transform pos) {}
+        public virtual void Cast(Transform parent, Vector3 position, Vector3 direction) {}
     }
 }
