@@ -1531,7 +1531,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 748415156}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.807, y: 0.596, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1858017924}
@@ -3332,6 +3332,7 @@ MonoBehaviour:
   spells:
   - {fileID: 11400000, guid: b21ec36a4116d804ab5cdd83657865a8, type: 2}
   dash: {fileID: 11400000, guid: db571a239e12c994798ab5976ceb21d5, type: 2}
+  _spellCaster: {fileID: 748415156}
 --- !u!1 &1861532348
 GameObject:
   m_ObjectHideFlags: 0

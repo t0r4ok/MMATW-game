@@ -18,7 +18,7 @@ namespace MMATW.Scripts.Player
         [SerializeField] private SpellObject dash;
 
         [Header("Other:")]
-        private Vector3 _shootRotation;
+        [SerializeField] private GameObject _spellCaster;
         
         private PlayerAttributes _attributes;
         private GameObject _projectileSpawner;
@@ -35,8 +35,6 @@ namespace MMATW.Scripts.Player
             Dash(); 
             
             if (Input.GetKeyDown(KeyCode.F)) PerformSpellCast();
-            
-   
         }
 
         // ReSharper disable Unity.PerformanceAnalysis
@@ -47,7 +45,7 @@ namespace MMATW.Scripts.Player
             
             if (_attributes.playerMana >= selectedSpell.manaCost)
             {
-                selectedSpell.Cast(gameObject, transform);
+                selectedSpell.Cast(gameObject, _spellCaster.transform);
             }
         }
 
