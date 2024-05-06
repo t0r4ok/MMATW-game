@@ -1,17 +1,23 @@
-﻿using UnityEngine.AI;
+﻿using System.Collections.Generic;
+using MMATW.Scripts.Player;
 using UnityEngine;
-using System.Collections.Generic;
+using UnityEngine.AI;
 
-namespace MMATW.Scripts.Player
+namespace MMATW.Scripts.Enemy
 {
     public class EnemyAI : MonoBehaviour
     {
+        [Header("Base settings:")]
+        [SerializeField] private BehaviourMode behaviourMode;
+        
+        
+        [Header("Properties:")]
         private NavMeshAgent _navMeshAgent;
         private bool _isPlayerNoticed;
 
         public List<Transform> patrolPoints;
         public PlayerMovement player;
-        public PlayerAtributes playerAtributes;
+        public PlayerAttributes playerAtributes;
 
         public float vievAngle;
         public bool _isVisible;
@@ -23,6 +29,16 @@ namespace MMATW.Scripts.Player
         public float attackColldown;
         private float _attackColldown;
 
+        
+        // This script may not work or work with bugs. Will need to be tested.
+        
+        enum BehaviourMode
+        {
+            SearchForPlayer,
+            AlwaysChasePlayer
+        }
+        
+        
         private void Start()
         {
             _attackColldown = attackColldown;
@@ -33,11 +49,30 @@ namespace MMATW.Scripts.Player
         private void InitComponentLinks()
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
+            playerAtributes = GetComponent<PlayerAttributes>();
         }
 
         private void Update()
         {
             _attackColldown -= Time.deltaTime;
+            EnemyLogicMain();
+        }
+        
+        private void EnemyLogicMain()
+        {
+            switch (behaviourMode) // I hope this will work...
+            {
+                case BehaviourMode.AlwaysChasePlayer:
+                    _navMeshAgent.destination = player.transform.position;
+                    break;
+                case BehaviourMode.SearchForPlayer:
+                    SearchForPlayer();
+                    break;
+            }
+        }
+
+        private void SearchForPlayer()
+        {
             NoticePlayerUpdate();
             ChaseUpdate();
             PatrolUpdate();
@@ -57,6 +92,8 @@ namespace MMATW.Scripts.Player
                 }
             }
         }
+        
+        
 
         private void ChaseUpdate()
         {
@@ -67,6 +104,8 @@ namespace MMATW.Scripts.Player
         }
         private void NoticePlayerUpdate()
         {
+            if (_isPlayerNoticed) return;
+            
             var direction = player.transform.position - transform.position;
             _isPlayerNoticed = false;
             _isVisible = false;
@@ -87,12 +126,9 @@ namespace MMATW.Scripts.Player
 
         private void PatrolUpdate()
         {
-            if (_navMeshAgent.remainingDistance == 0)
+            if (!_isPlayerNoticed && _navMeshAgent.remainingDistance == 0)
             {
-                if (!_isPlayerNoticed)
-                {
-                    PickNewPatrolPoint();
-                }
+                PickNewPatrolPoint();
             }
         }
 

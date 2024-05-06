@@ -1,21 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace MMATW.Scripts.Player
+namespace MMATW.Scripts
 {
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] private Texture2D cursor;
-
         public GameObject pauseMenu;
         public GameObject mainMenu;
         public GameObject settingsMenu;
 
-        private void Start()
-        {
-            Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
-        }
-
+        public GameObject mainManu;
+        
+        // TODO: Separate this GameManager to specific managers. Like SceneManager, GlobalEventManager and so on and so forth.
+        // It's just that it can become somewhat problematic to work with, transferring it to other scenes, etc.
+        
         public void Quit()
         {
             Application.Quit();
@@ -28,12 +26,9 @@ namespace MMATW.Scripts.Player
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (!mainManu && Input.GetKeyDown(KeyCode.Escape))
             {
-                if (!mainMenu)
-                {
-                    pauseMenu.SetActive(true);
-                }
+                pauseMenu.SetActive(true);
             }
         }
 
