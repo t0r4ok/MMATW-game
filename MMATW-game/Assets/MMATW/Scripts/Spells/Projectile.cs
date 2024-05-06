@@ -14,8 +14,7 @@ namespace MMATW.Scripts.Spells
         
         public override void Cast(Transform parent, Vector3 position, Vector3 direction)
         {
-            Quaternion lookAt = Quaternion.FromToRotation(new Vector3(1f, 0f, 0f), direction);
-            Instantiate(spellPrefab, position, lookAt);
+            Instantiate(spellPrefab, position, parent.transform.rotation);
             base.Cast(parent, position, direction);
         }
     }

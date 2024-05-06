@@ -37,20 +37,28 @@ namespace MMATW.Scripts.Player
             if (Input.GetKeyDown(KeyCode.F)) PerformSpellCast();
         }
 
+        /*
+        TODO: 1. Add cast delay
+        TODO: 2. Add more spells.
+        TODO: 3. Hope that all this piece of sh... code will work as intended and wont broke at some point.
+        TODO: 4. Try not to lose our minds. 
+        */
+        
+        
         // ReSharper disable Unity.PerformanceAnalysis
         private void PerformSpellCast()
         {
             if (selectedSpell == null) return;
             
-            Vector3 direction = gameObject.transform.position;
-            direction = Vector3.Scale(direction, new Vector3(1.5f, 1.5f, 0f));
+            Vector3 direction = transform.position;
+            direction = Vector3.Scale(direction, new Vector3(0f, transform.rotation.y, 0f));
             direction.Normalize();
             
             
             if (_attributes.playerMana >= selectedSpell.manaCost)
             {
                 _attributes.TakeMana(selectedSpell.manaCost);
-                selectedSpell.Cast(_spellCaster.transform, _spellCaster.transform.position + direction, direction);
+                selectedSpell.Cast(_spellCaster.transform, _spellCaster.transform.position, direction);
             }
         }
 
