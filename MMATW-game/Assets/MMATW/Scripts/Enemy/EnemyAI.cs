@@ -20,7 +20,14 @@ namespace MMATW.Scripts.Enemy
         public PlayerAttributes playerAtributes;
 
         public float vievAngle;
+        public bool _isVisible;
+
+        public float boostSpeed;
+        public float boostDistance;
+
         public int damage;
+        public float attackColldown;
+        private float _attackColldown;
 
         enum BehaviourMode
         {
@@ -31,6 +38,7 @@ namespace MMATW.Scripts.Enemy
         
         private void Start()
         {
+            _attackColldown = attackColldown;
             InitComponentLinks();
             PickNewPatrolPoint();
         }
@@ -38,10 +46,12 @@ namespace MMATW.Scripts.Enemy
         private void InitComponentLinks()
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
+            playerAtributes = GetComponent<PlayerAttributes>();
         }
 
         private void Update()
         {
+            _attackColldown -= Time.deltaTime;
             EnemyLogicMain();
         }
         
@@ -61,16 +71,41 @@ namespace MMATW.Scripts.Enemy
         private void SearchForPlayer()
         {
             NoticePlayerUpdate();
+            ChaseUpdate();
             PatrolUpdate();
+            BoostSpeedUpdate();
+        }
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.TryGetComponent(out PlayerMovement playerMovement))
+            {
+                if (_isVisible)
+                {
+                    if (_attackColldown <= 0)
+                    {
+                        playerAtributes.DamagePlayer(damage);
+                        _attackColldown = attackColldown;
+                    }
+                }
+            }
         }
         
         
+
+        private void ChaseUpdate()
+        {
+            if (_isPlayerNoticed)
+            {
+                _navMeshAgent.destination = player.transform.position;
+            }
+        }
         private void NoticePlayerUpdate()
         {
             if (_isPlayerNoticed) return;
             
             var direction = player.transform.position - transform.position;
             _isPlayerNoticed = false;
+            _isVisible = false;
 
             if (Vector3.Angle(transform.forward, direction) < vievAngle)
             {
@@ -80,6 +115,7 @@ namespace MMATW.Scripts.Enemy
                     if (hit.collider.gameObject == player.gameObject)
                     {
                         _isPlayerNoticed = true;
+                        _isVisible = true;
                     }
                 }
             }
@@ -96,6 +132,20 @@ namespace MMATW.Scripts.Enemy
         public void PickNewPatrolPoint()
         {
             _navMeshAgent.destination = patrolPoints[Random.Range(0, patrolPoints.Count)].position;
+        }
+        private void BoostSpeedUpdate()
+        {
+            _navMeshAgent.speed = 5;
+            if (_isPlayerNoticed)
+            {
+                _navMeshAgent.destination = player.transform.position;
+                float distance = Vector3.Distance(transform.position, player.transform.position);
+                if (distance > boostDistance)
+                {
+                    _navMeshAgent.speed = boostSpeed;
+                }
+            }
+
         }
     }
 }
