@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using MMATW.Scripts.Scriptable_objects;
-using UnityEditor.UI;
 using UnityEngine;
 
 namespace MMATW.Scripts.Player

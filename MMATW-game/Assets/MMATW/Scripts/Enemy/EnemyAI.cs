@@ -29,6 +29,9 @@ namespace MMATW.Scripts.Enemy
         public float attackColldown;
         private float _attackColldown;
 
+        
+        // This script may not work or work with bugs. Will need to be tested.
+        
         enum BehaviourMode
         {
             SearchForPlayer,

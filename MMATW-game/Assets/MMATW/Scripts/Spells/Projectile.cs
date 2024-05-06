@@ -8,6 +8,7 @@ namespace MMATW.Scripts.Spells
     {
         public GameObject spellPrefab;
 
+        // TODO: Make use of this variables.
         public int damage = 5;
         public float projectileVelocity;
         

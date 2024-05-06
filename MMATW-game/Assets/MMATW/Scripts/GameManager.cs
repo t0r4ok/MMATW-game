@@ -11,6 +11,9 @@ namespace MMATW.Scripts
 
         public GameObject mainManu;
         
+        // TODO: Separate this GameManager to specific managers. Like SceneManager, GlobalEventManager and so on and so forth.
+        // It's just that it can become somewhat problematic to work with, transferring it to other scenes, etc.
+        
         public void Quit()
         {
             Application.Quit();
