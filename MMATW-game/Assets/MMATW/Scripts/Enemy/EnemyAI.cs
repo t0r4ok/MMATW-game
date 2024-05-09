@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using MMATW.Scripts.Player;
+﻿using MMATW.Scripts.Player;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -29,6 +29,8 @@ namespace MMATW.Scripts.Enemy
         public float attackColldown;
         private float _attackColldown;
 
+        public Animator animator;
+
         
         // This script may not work or work with bugs. Will need to be tested.
         
@@ -49,12 +51,16 @@ namespace MMATW.Scripts.Enemy
         private void InitComponentLinks()
         {
             _navMeshAgent = GetComponent<NavMeshAgent>();
-            playerAtributes = GetComponent<PlayerAttributes>();
         }
 
         private void Update()
         {
             _attackColldown -= Time.deltaTime;
+            animator.SetBool("Is Moving", true);
+            if (_navMeshAgent.isStopped)
+            {
+                animator.SetBool("Is Moving", false);
+            }
             EnemyLogicMain();
         }
         
@@ -80,6 +86,7 @@ namespace MMATW.Scripts.Enemy
         }
         private void OnTriggerStay(Collider other)
         {
+            animator.SetBool("Is Attack", false);
             if (other.TryGetComponent(out PlayerMovement playerMovement))
             {
                 if (_isVisible)
@@ -88,6 +95,7 @@ namespace MMATW.Scripts.Enemy
                     {
                         playerAtributes.DamagePlayer(damage);
                         _attackColldown = attackColldown;
+                        animator.SetBool("Is Attack", true);
                     }
                 }
             }
