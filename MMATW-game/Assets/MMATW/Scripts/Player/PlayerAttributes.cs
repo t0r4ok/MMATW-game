@@ -117,7 +117,6 @@ namespace MMATW.Scripts.Player
                 {
                     RestoreStamina(regenAmount);
                 }
-                print($"Stamina regenerated: {regenAmount}");
                 yield return new WaitForSeconds(regenDelay);
             }
         }
@@ -130,7 +129,6 @@ namespace MMATW.Scripts.Player
                 {
                     RestoreMana(regenAmount);
                 }
-                print($"Mana regenerated: {regenAmount}");
                 yield return new WaitForSeconds(regenDelay);
             }
         }
