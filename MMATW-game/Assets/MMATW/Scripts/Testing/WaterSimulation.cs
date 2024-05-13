@@ -4,19 +4,22 @@ using UnityEngine;
 public class WaterSimulation: MonoBehaviour
 {
     public float Density = 15;
+    public bool repulsiveWater = true;
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.attachedRigidbody != null)
+        if(repulsiveWater == true)
         {
-            other.attachedRigidbody.AddForce(Vector3.up * Density);
+            if (other.attachedRigidbody != null)
+            {
+                other.attachedRigidbody.AddForce(Vector3.up * Density);
+            }
+            PlayerMovement player = other.GetComponent<PlayerMovement>();
+            if (player.gravity < 1.0f)
+            {
+                player.gravity += 0.05f;
+            }
         }
-        PlayerMovement player = other.GetComponent<PlayerMovement>();
-        if(player.gravity < 1.0f)
-        {
-            player.gravity += 0.05f;
-        }
-
     }
     private void OnTriggerExit(Collider other)
     {
