@@ -20,7 +20,7 @@ namespace MMATW.Scripts.Testing
         private void OnTriggerEnter(Collider other)
         {
             if (!other.gameObject.CompareTag("Player")) return;
-            var player = other.GetComponent<PlayerAtributes>();
+            var player = other.GetComponent<PlayerAttributes>();
             
             switch (mode)
             {
