@@ -11,11 +11,17 @@ public class WaterSimulation: MonoBehaviour
         {
             other.attachedRigidbody.AddForce(Vector3.up * Density);
         }
-        /*PlayerMovement player = other.GetComponent<PlayerMovement>();
-        float NewX = player.transform.position.x;
-        float NewY = player.transform.position.y;
-        float NewZ = player.transform.position.z;
-        other.transform.position = new Vector3(NewX, NewY + 0.5f, NewZ);*/
+        PlayerMovement player = other.GetComponent<PlayerMovement>();
+        if(player.gravity < 1.0f)
+        {
+            player.gravity += 0.05f;
+        }
+
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        PlayerMovement player = other.GetComponent<PlayerMovement>();
+        player.gravity = -1.5f;
     }
 }
 
