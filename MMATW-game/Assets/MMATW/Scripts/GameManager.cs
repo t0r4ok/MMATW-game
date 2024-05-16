@@ -10,6 +10,8 @@ namespace MMATW.Scripts
         public GameObject settingsMenu;
 
         public GameObject mainManu;
+
+        
         
         // TODO: Separate this GameManager to specific managers. Like SceneManager, GlobalEventManager and so on and so forth.
         // It's just that it can become somewhat problematic to work with, transferring it to other scenes, etc.
@@ -21,7 +23,7 @@ namespace MMATW.Scripts
 
         public void StartGame()
         {
-            SceneManager.LoadScene("SampleScene");
+            SceneManager.LoadScene("ShootingTest");
         }
 
         private void Update()
