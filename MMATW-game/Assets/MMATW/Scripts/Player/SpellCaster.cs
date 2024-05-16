@@ -5,8 +5,15 @@ namespace MMATW.Scripts.Player
     public class SpellCaster : MonoBehaviour
     {
         public Transform targetPoint;
-        
+
         void Update()
+        {
+            SetTargetPos();
+            
+            
+        }
+
+        private void SetTargetPos()
         {
             var startPos = transform.position;
             var endPos = transform.up * 10; 
@@ -18,5 +25,8 @@ namespace MMATW.Scripts.Player
                 targetPoint.position = hit.point;
             }
         }
+        
+        
+        
     }
 }
