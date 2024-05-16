@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
+using Random = System.Random;
 
 {
     public class EnemySpawner : MonoBehaviour
@@ -9,33 +9,24 @@ using UnityEngine;
         public GameObject[] enemyType;
         [SerializeField] private float spawnCooldown;
         [SerializeField] private int maxEnemiesOnMap;
-
-
-
+        
         private void Start()
         {
-            StartCoroutine(SpawnEnemy(maxEnemiesOnMap, spawnCooldown));
+            StartCoroutine(SpawnEnemy(spawnCooldown));
         }
 
+        // TODO: Добавить более адыкватную проверку на кол-во врагов. решарпер ругается.
         // ReSharper disable Unity.PerformanceAnalysis
-        private IEnumerator SpawnEnemy(int maxEnemiesOnMap, float spawnCooldown)
-        {
-            while (true) // Repeat indefinitely. 
-            {
-                if (playerStamina < maxStamina && !_movement.isWalking)
-                {
-                    RestoreStamina(regenAmount);
-                }
-                yield return new WaitForSeconds(spawnCooldown);
-            }
-        }
+        private IEnumerator SpawnEnemy(float spawnCooldown)
         {
             GameObject[] enemycount = GameObject.FindGameObjectsWithTag("Enemy");
+            if (enemycount.Length >= maxEnemiesOnMap) yield break;
+            
 
-            if (spawnCooldown.IsInCooldown && enemycount.Length > maxEnemiesOnMap) return;
-
+            yield return new WaitForSeconds(spawnCooldown); // Cooldown
+            
+            
             Instantiate(enemyType[Random.Range(0, enemyType.Length)], spawnPosition[Random.Range(0, spawnPosition.Length)]);
-            spawnCooldown.StartCooldown();
         }
     }
 }
