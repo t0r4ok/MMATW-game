@@ -13,7 +13,6 @@ namespace MMATW.Scripts.Spells
 
             // This realization is kinda cringe, but i don't care and won't rewrite it. I'm already lost my mind.
             playerMovement.Dash();
-            Debug.Log("Dashed!");
         }
     }
 }
