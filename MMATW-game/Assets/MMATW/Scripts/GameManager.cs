@@ -23,7 +23,7 @@ namespace MMATW.Scripts
 
         public void StartGame()
         {
-            SceneManager.LoadScene("ShootingTest");
+            SceneManager.LoadScene("Game");
         }
 
         private void Update()
