@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 7573970855627723228}
   - component: {fileID: 7573970855627723224}
   - component: {fileID: 7573970855627723221}
+  - component: {fileID: 871331945746074422}
   - component: {fileID: 7573970855627723226}
   - component: {fileID: 7573970855627723227}
   - component: {fileID: 4221621521142801403}
@@ -255,11 +256,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 584b0ac9971941d39fd4efd9945419c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dash: {fileID: 11400000, guid: db571a239e12c994798ab5976ceb21d5, type: 2}
+  _spellCaster: {fileID: 7573970854589948905}
+--- !u!114 &871331945746074422
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7573970855627723229}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27acea0dbe451394d82421376b1ac7ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   selectedSpell: {fileID: 0}
   spells:
   - {fileID: 11400000, guid: b21ec36a4116d804ab5cdd83657865a8, type: 2}
-  dash: {fileID: 11400000, guid: db571a239e12c994798ab5976ceb21d5, type: 2}
-  _spellCaster: {fileID: 7573970854589948905}
+  - {fileID: 11400000, guid: 9bdc916e74b660145af8c1a068bcea42, type: 2}
+  - {fileID: 11400000, guid: 6f048283f1a3dbc4ea323bf4e10ffe66, type: 2}
+  craftingSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  essenceToUse:
+  - {fileID: 11400000, guid: 2d3a77dd8f0c7ac4e8ed9baf0bd790d8, type: 2}
+  - {fileID: 11400000, guid: 5eaaed4c92e88a045b9dd6161109406f, type: 2}
+  - {fileID: 11400000, guid: 3890ebd1e3d728e48b74767570fc7704, type: 2}
 --- !u!114 &7573970855627723226
 MonoBehaviour:
   m_ObjectHideFlags: 0

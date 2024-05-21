@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9f89de96e14949abbefe07344e6c8ccf, type: 3}
-  m_Name: Fireball
+  m_Name: ElectroBall
   m_EditorClassIdentifier: 
-  name: FireBall
-  description: Fireabll with fire
-  uiIcon: {fileID: 21300000, guid: 58831808ae33e074cb2cecd205afe58d, type: 3}
-  manaCost: 20
+  name: Electroball
+  description: Bzzz sphere
+  uiIcon: {fileID: 21300000, guid: b6a3f07d0052121459dad0e802c13066, type: 3}
+  manaCost: 5
   staminaCost: 0
   healthCost: 0
-  spellPrefab: {fileID: 5597149410804506533, guid: 422877b02b968394dbc643078508d839,
+  spellPrefab: {fileID: 5597149410804506533, guid: ac7dbb589a5e37d48b2f010ba9603fc8,
     type: 3}
-  damage: 20
-  projectileVelocity: 7.5
+  damage: 5
+  projectileVelocity: 0
