@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 
 namespace MMATW.Scripts.Player
 {
@@ -10,8 +11,11 @@ namespace MMATW.Scripts.Player
     {
 
         [Header("References")]
+        [SerializeField] private LayerMask groundMask;
         private CharacterController _controller;
         private PlayerAttributes _attributes;
+        private Camera _mainCamera;
+        
         [Header("Preferences")]
         [Tooltip("Sets player speed. Remember that the speed will be multiplied by deltatime.")]
         public float playerSpeed = 5;
@@ -29,6 +33,14 @@ namespace MMATW.Scripts.Player
         private Vector3 _velocity;
         private float _horizontalRotation;
         private Vector3 _moveDirection;
+
+        [Header("Debug")] 
+        [SerializeField] private bool debugDrawRotation;
+
+        private void Start()
+        {
+            _mainCamera = Camera.main;
+        }
 
         private void Awake()
         {
@@ -100,15 +112,42 @@ namespace MMATW.Scripts.Player
             _velocity.y -= gravity * Time.fixedDeltaTime;
             _controller.Move(Vector3.down * (_velocity.y * Time.fixedDeltaTime));
         }
-        
+
         private void Rotation()
         {
-            Quaternion newRotation;
+            var (success, position) = GetMousePosition();
+            if (!success) return;
             
-            if (_inputs.sqrMagnitude == 0) return;
-            
-            newRotation = Quaternion.LookRotation(_moveDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * rotationSpeed);
+            // Calculate the direction
+            var direction = position - transform.position;
+
+            // You might want to delete this line.
+            // Ignore the height difference.
+            direction.y = 0;
+
+            // Make the transform look in the direction.
+            transform.forward = direction;
+        }
+
+        private (bool success, Vector3 position) GetMousePosition()
+        {
+            Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, groundMask))
+            {
+                if (debugDrawRotation)
+                {
+                    Debug.DrawRay(transform.position, transform.forward * 3, Color.cyan);
+                    Debug.DrawRay(ray.origin, ray.direction * 3, Color.yellow);
+                }
+                // The Raycast hit something, return with the position.
+                return (success: true, position: hitInfo.point);
+            }
+            else
+            {
+                // The Raycast did not hit anything.
+                return (success: false, position: Vector3.zero);
+            }
         }
     }
 }
