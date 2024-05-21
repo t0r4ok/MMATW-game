@@ -28,19 +28,25 @@ namespace MMATW.Scripts.Player
         
         private void Update()
         {
+            var sm = _spellManager;
+            
+            if (Input.GetKeyDown(KeyCode.E)) Interact(); // Don't do anything.
+            
+            // Spell preparation (crafting)
+            if (Input.GetKeyDown(KeyCode.Z) && sm.essenceToUse[0]) sm.AddEssense(sm.essenceToUse[0]);
+            if (Input.GetKeyDown(KeyCode.X) && sm.essenceToUse[1]) sm.AddEssense(sm.essenceToUse[1]);
+            if (Input.GetKeyDown(KeyCode.C) && sm.essenceToUse[2]) sm.AddEssense(sm.essenceToUse[2]);
+            
             if (Input.GetKeyDown(KeyCode.Alpha1)) Dash();
-            if (Input.GetKeyDown(KeyCode.F)) PerformSpellCast();
-
-            PrepareSpell();
+            if (Input.GetKeyDown(KeyCode.Mouse0)) PerformSpellCast();
             if (Input.GetKeyDown(KeyCode.T)) _spellManager.ClearSpell();
-
         }
 
         /*
         TODO: 1. Add cast delay
-        TODO: 2. Add more spells.
-        TODO: 3. Hope that all this piece of sh... code will work as intended and wont broke at some point.
-        TODO: 4. Try not to lose our minds. 
+        TODO: 2. Add more spells. [DONE] 
+        TODO: 3. Hope that all this piece of sh... code will work as intended and wont broke at some point. [Will never be done]
+        TODO: 4. Try not to lose our minds. [Lost mine already]
         */
         
         
@@ -55,23 +61,26 @@ namespace MMATW.Scripts.Player
             direction.Normalize();
             
             
-            if (_attributes.playerMana >= spell.manaCost)
+            if (_attributes.playerMana >= spell.manaCost && _attributes.playerHealth >= spell.healthCost &&
+                _attributes.playerStamina >= spell.staminaCost)
             {
                 _attributes.TakeMana(spell.manaCost);
+                _attributes.TakeStamina(spell.staminaCost);
+                _attributes.TakeStamina(spell.healthCost);
+
+
                 spell.Cast(_spellCaster.transform, _spellCaster.transform.position, direction);
             }
         }
         
+        
+        
         private void Interact()
         {
-            
+            return;
         }
-        private void PrepareSpell()
-        {
-            // Даже оправдываться не буду. 
-            var sm = _spellManager;
-            if (Input.GetKeyDown(KeyCode.Z) && sm.essenseToUse[1]) sm.AddEssense(sm.essenseToUse[1]);   
-        }
+        
+        
         
         private void KillPlayer()
         {

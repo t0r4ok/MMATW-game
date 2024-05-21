@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace MMATW.Scripts.Scriptable_objects
 {
@@ -10,9 +11,9 @@ namespace MMATW.Scripts.Scriptable_objects
 
         
         [Header("UI:")]
-        [SerializeField] private new string name = "essence Name";
-        [SerializeField] private string description = "essence description";
+        public new string name = "essence Name";
+        public string description = "essence description";
         
-        [SerializeField] private Sprite uiIcon;
+        public Sprite uiIcon;
     }
 }

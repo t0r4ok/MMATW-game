@@ -272,10 +272,12 @@ MonoBehaviour:
   selectedSpell: {fileID: 0}
   spells:
   - {fileID: 11400000, guid: b21ec36a4116d804ab5cdd83657865a8, type: 2}
+  - {fileID: 11400000, guid: 9bdc916e74b660145af8c1a068bcea42, type: 2}
+  - {fileID: 11400000, guid: 6f048283f1a3dbc4ea323bf4e10ffe66, type: 2}
   craftingSlots:
   - {fileID: 0}
   - {fileID: 0}
-  essenseToUse:
+  essenceToUse:
   - {fileID: 11400000, guid: 2d3a77dd8f0c7ac4e8ed9baf0bd790d8, type: 2}
   - {fileID: 11400000, guid: 5eaaed4c92e88a045b9dd6161109406f, type: 2}
   - {fileID: 11400000, guid: 3890ebd1e3d728e48b74767570fc7704, type: 2}
