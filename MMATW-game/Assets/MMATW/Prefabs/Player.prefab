@@ -140,7 +140,6 @@ GameObject:
   - component: {fileID: 871331945746074422}
   - component: {fileID: 7573970855627723226}
   - component: {fileID: 7573970855627723227}
-  - component: {fileID: 4221621521142801403}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -318,6 +317,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b474825fec977147ab0bd90256cfda0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 256
   playerSpeed: 5
   playerSprintSpeed: 10
   staminaUsage: 15
@@ -326,6 +328,7 @@ MonoBehaviour:
   rotationSpeed: 10
   isWalking: 0
   isGrounded: 0
+  debugDrawRotation: 1
 --- !u!1001 &9032337736718158950
 PrefabInstance:
   m_ObjectHideFlags: 0
