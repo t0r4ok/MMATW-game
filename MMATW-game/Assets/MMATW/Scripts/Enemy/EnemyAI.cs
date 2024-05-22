@@ -95,16 +95,14 @@ namespace MMATW.Scripts.Enemy
         private void OnTriggerStay(Collider other)
         {
             animator.SetBool(AnimIsAttack, false);
-            if (other.TryGetComponent(out PlayerMovement playerMovement))
+
+            if (other.TryGetComponent(out PlayerAttributes playerAttributes))
             {
-                if (isVisible)
+                if (_attackColldown <= 0)
                 {
-                    if (_attackColldown <= 0)
-                    {
-                        player.DamagePlayer(damage);
-                        _attackColldown = attackColldown;
-                        animator.SetBool(AnimIsAttack, true);
-                    }
+                    playerAttributes.DamagePlayer(damage);
+                    _attackColldown = attackColldown;
+                    animator.SetBool(AnimIsAttack, true);
                 }
             }
         }
