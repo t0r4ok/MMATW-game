@@ -9,7 +9,6 @@ namespace MMATW.Scripts.Spells.Controllers
     {
         private Rigidbody _rb;
         private Projectile _projectile;
-        private EnemyHealth _enemyHealth;
         
         void Start()
         {
@@ -26,18 +25,14 @@ namespace MMATW.Scripts.Spells.Controllers
         }
 
 
-        private void OnCollisionEnter(Collision other)
+        private void OnCollisionEnter(Collision collision)
         {
-            FlashAway();
-            if(other.GetComponent<EnemyHealth>() != null)
-            {
-
-            }
-            EnemyHealth enemy = other.GetComponent<EnemyHealth>();
-
-            _enemyHealth.DealDamage(_projectile.damage);
+            if(!collision.gameObject.GetComponent<EnemyHealth>()) FlashAway();;
             
-            // Damage logic goes here!
+            
+            EnemyHealth enemy = collision.gameObject.GetComponent<EnemyHealth>();
+            enemy.DealDamage(_projectile.damage);
+            FlashAway();
         }
 
         private IEnumerator LifeCycle()
