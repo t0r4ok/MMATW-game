@@ -1,6 +1,4 @@
-﻿using System;
-using MMATW.Scripts.Enemy;
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 namespace MMATW.Scripts.Spells.Controllers

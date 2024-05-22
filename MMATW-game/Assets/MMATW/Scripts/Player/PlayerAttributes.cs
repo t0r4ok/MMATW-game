@@ -49,8 +49,7 @@ namespace MMATW.Scripts.Player
             StartCoroutine(RegenStamina(staminaRegenAmount, staminaRegenDelay));
         }
         
-
-        // Regions helps to easily hide some code block at one click instead of closing them all one by one. 
+        
         // You can use this actions to manipulate with player's stats (HP, MP, STM).
         #region ActionsWithPlayer
         // TODO: Make all this shit work with Events.

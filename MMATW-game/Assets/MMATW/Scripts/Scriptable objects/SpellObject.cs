@@ -1,6 +1,5 @@
 using System.ComponentModel;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace MMATW.Scripts.Scriptable_objects
 {

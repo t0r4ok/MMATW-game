@@ -1,24 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using TMPro;
 using UnityEngine;
-using TMPro;
 
-public class DeathCounter : MonoBehaviour
+namespace MMATW.Scripts.UI
 {
-    public TextMeshProUGUI textMeshProUGUI;
-    public int enemyDeath = 0;
-    void Start()
+    public class DeathCounter : MonoBehaviour
     {
-        
-    }
+        public TextMeshProUGUI textMeshProUGUI;
+        public int enemyDeath = 0;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public void DrawUI()
-    {
-        textMeshProUGUI.text = enemyDeath.ToString();
+        public void DrawUI()
+        {
+            textMeshProUGUI.text = enemyDeath.ToString();
+        }
     }
 }
