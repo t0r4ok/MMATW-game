@@ -15,5 +15,4 @@ namespace MMATW.Scripts
         public static Action<Sprite> OnEssenceChange0;
         public static Action<Sprite> OnEssenceChange1;
     }
-        
 }

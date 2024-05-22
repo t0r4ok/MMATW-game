@@ -1,17 +1,18 @@
 ﻿using System.Collections;
+using MMATW.Scripts.Enemy;
 using UnityEngine;
 
 namespace MMATW.Scripts.Spells.Controllers
 {
     public class ProjectileSpellController : MonoBehaviour
     {
+        public Projectile spell;
         private Rigidbody _rb;
-        private Projectile _projectile;
+        
         
         void Start()
         {
             _rb = GetComponent<Rigidbody>();
-            _projectile = GetComponent<Projectile>();
 
             StartCoroutine(LifeCycle());
         }
@@ -25,11 +26,9 @@ namespace MMATW.Scripts.Spells.Controllers
 
         private void OnCollisionEnter(Collision collision)
         {
-            if(!collision.gameObject.GetComponent<EnemyHealth>()) FlashAway();;
+            if(collision.gameObject.GetComponent<EnemyHealth>()) spell.OnHit(collision.gameObject);
             
             
-            EnemyHealth enemy = collision.gameObject.GetComponent<EnemyHealth>();
-            enemy.DealDamage(_projectile.damage);
             FlashAway();
         }
 

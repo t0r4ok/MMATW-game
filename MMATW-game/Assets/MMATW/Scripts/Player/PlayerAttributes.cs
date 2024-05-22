@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 namespace MMATW.Scripts.Player
@@ -7,9 +8,9 @@ namespace MMATW.Scripts.Player
     public class PlayerAttributes : MonoBehaviour
     {
         private PlayerMovement _movement;
-        
-        [Header("Attributes")] 
-        // TBA
+
+        [Header("Debug:")] 
+        [SerializeField] private bool isInvincible;
         
         [Header("Health:")]
         public int playerHealth; // shouldn't be changed in inspector. Just for testing.
@@ -63,7 +64,15 @@ namespace MMATW.Scripts.Player
         
         public void DamagePlayer(int damage)
         {
-            playerHealth -= damage;
+            if (isInvincible)
+            {
+                playerHealth -= 0;
+                
+            }
+            else
+            {
+                playerHealth -= damage;
+            }
             
             
             playerHealth = Mathf.Clamp(playerHealth, 0, maxHealth);

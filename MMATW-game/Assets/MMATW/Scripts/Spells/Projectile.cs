@@ -18,5 +18,11 @@ namespace MMATW.Scripts.Spells
             Instantiate(spellPrefab, position, parent.transform.rotation);
             base.Cast(parent, position, direction);
         }
+
+        public virtual void OnHit(GameObject target)
+        {
+            target.SendMessage("TakeDamage", damage);
+        }
+        
     }
 }
