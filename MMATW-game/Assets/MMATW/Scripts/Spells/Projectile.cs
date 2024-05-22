@@ -22,6 +22,7 @@ namespace MMATW.Scripts.Spells
         public virtual void OnHit(GameObject target)
         {
             target.SendMessage("TakeDamage", damage);
+            Debug.Log($"Damaged enemy{target}");
         }
         
     }

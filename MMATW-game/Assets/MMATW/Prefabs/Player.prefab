@@ -293,6 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df4a83edeca6ac24aabb47ee2917765e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInvincible: 0
   playerHealth: 0
   maxHealth: 100
   healthRegenDelay: 0.5
@@ -322,11 +323,12 @@ MonoBehaviour:
     m_Bits: 256
   playerSpeed: 5
   playerSprintSpeed: 10
-  staminaUsage: 15
+  staminaUsage: 20
   jumpForce: 3
   gravity: -1.5
   rotationSpeed: 10
   isWalking: 0
+  isSprinting: 0
   isGrounded: 0
   debugDrawRotation: 1
 --- !u!1001 &9032337736718158950

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using MMATW.Scripts.Enemy;
 using UnityEngine;
 
@@ -26,9 +27,9 @@ namespace MMATW.Scripts.Spells.Controllers
 
         private void OnCollisionEnter(Collision collision)
         {
-            if(collision.gameObject.GetComponent<EnemyHealth>()) spell.OnHit(collision.gameObject);
+            if (collision.gameObject.CompareTag("Player")) return;
             
-            
+            if (collision.gameObject.GetComponent<EnemyHealth>()) spell.OnHit(collision.gameObject);
             FlashAway();
         }
 

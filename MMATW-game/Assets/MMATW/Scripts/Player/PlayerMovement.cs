@@ -27,6 +27,8 @@ namespace MMATW.Scripts.Player
         [Header("Movement Vars:")]
         public float rotationSpeed = 10;
         public bool isWalking;
+        public bool isSprinting;
+
         [HideInInspector] public bool isGrounded;
         private Vector3 _inputs;
         private Vector3 _velocity;
@@ -71,17 +73,19 @@ namespace MMATW.Scripts.Player
         {
             _inputs = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
             _moveDirection = _inputs * (Time.deltaTime * playerSpeed);
+            isSprinting = false;
+            
             
             // sprint
-            if (Input.GetKey(KeyCode.LeftShift) && _attributes.playerStamina > 0)
+            if (Input.GetKey(KeyCode.LeftShift) && _attributes.playerStamina > 0 && _inputs.magnitude > 0)
             {
                 var stamina = (staminaUsage / 1.5f) * Time.deltaTime;
                 
-                _moveDirection = _inputs * (Time.deltaTime * playerSprintSpeed);
+                _moveDirection = _inputs * (playerSprintSpeed * Time.deltaTime);
                 _attributes.TakeStamina(stamina);
-                
+                isSprinting = true;
             }
-
+            
             _controller.Move(_moveDirection);
         }
         

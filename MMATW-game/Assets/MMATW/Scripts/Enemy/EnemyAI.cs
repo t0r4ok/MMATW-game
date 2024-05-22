@@ -1,5 +1,4 @@
 ﻿using MMATW.Scripts.Player;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,9 +14,8 @@ namespace MMATW.Scripts.Enemy
         private NavMeshAgent _navMeshAgent;
         private bool _isPlayerNoticed;
 
-        public List<Transform> patrolPoints;
-        public PlayerMovement player;
-        public PlayerAttributes playerAttributes;
+        public Transform[] patrolPoints;
+        public PlayerAttributes player;
 
         public float viewAngle;
         public bool isVisible;
@@ -45,6 +43,14 @@ namespace MMATW.Scripts.Enemy
         
         private void Start()
         {
+            if (!player) player = (PlayerAttributes)FindObjectOfType(typeof(PlayerAttributes));
+
+            if (patrolPoints == null)
+            {
+                var spawner = FindObjectOfType<EnemySpawner>();
+                patrolPoints = spawner.patrolPoints;
+            }
+            
             _attackColldown = attackColldown;
             InitComponentLinks();
             PickNewPatrolPoint();
@@ -95,7 +101,7 @@ namespace MMATW.Scripts.Enemy
                 {
                     if (_attackColldown <= 0)
                     {
-                        playerAttributes.DamagePlayer(damage);
+                        player.DamagePlayer(damage);
                         _attackColldown = attackColldown;
                         animator.SetBool(AnimIsAttack, true);
                     }
@@ -144,7 +150,7 @@ namespace MMATW.Scripts.Enemy
 
         public void PickNewPatrolPoint()
         {
-            _navMeshAgent.destination = patrolPoints[Random.Range(0, patrolPoints.Count)].position;
+            _navMeshAgent.destination = patrolPoints[Random.Range(0, patrolPoints.Length)].position;
         }
         private void BoostSpeedUpdate()
         {

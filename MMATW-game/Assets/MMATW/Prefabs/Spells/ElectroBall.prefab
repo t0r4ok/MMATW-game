@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1731988414580956730}
   - component: {fileID: 5490282191333778680}
   - component: {fileID: 2401399198177620102}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4765,7 +4765,7 @@ GameObject:
   - component: {fileID: 4609078830802560701}
   - component: {fileID: 1648691015893492101}
   - component: {fileID: 6930811785773077935}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9523,7 +9523,7 @@ GameObject:
   - component: {fileID: 3212761297131002517}
   - component: {fileID: 2906050703007219686}
   - component: {fileID: 4193569226343231826}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ElectroBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9601,7 +9601,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5597149410804506533}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -9634,6 +9634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c73026724795c94d8f549be0742a25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spell: {fileID: 11400000, guid: 6f048283f1a3dbc4ea323bf4e10ffe66, type: 2}
 --- !u!82 &4193569226343231826
 AudioSource:
   m_ObjectHideFlags: 0

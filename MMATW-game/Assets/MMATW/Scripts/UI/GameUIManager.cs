@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,10 @@ namespace MMATW.Scripts.UI
         
         [SerializeField] private Image uiEssenceImage0;
         [SerializeField] private Image uiEssenceImage1;
+
+        private int enemyDeaths = 0;
+        [SerializeField] private TextMeshProUGUI uiDeathCounter;
+
         
         private void Start() // Subscribing to events.
         {
@@ -23,6 +28,8 @@ namespace MMATW.Scripts.UI
             
             GlobalEventManager.OnEssenceChange0 += UpdateEssenceUI_First;
             GlobalEventManager.OnEssenceChange1 += UpdateEssenceUI_Second;
+
+            GlobalEventManager.onEnemyDeath += UpdateDeathCounterUI;
         }
 
         private void OnDestroy() // Unsubscribing from events.
@@ -34,6 +41,8 @@ namespace MMATW.Scripts.UI
             
             GlobalEventManager.OnEssenceChange0 -= UpdateEssenceUI_First;
             GlobalEventManager.OnEssenceChange1 -= UpdateEssenceUI_Second;
+            
+            GlobalEventManager.onEnemyDeath -= UpdateDeathCounterUI;
         }
 
 
@@ -67,6 +76,14 @@ namespace MMATW.Scripts.UI
         {
             if (uiEssenceImage1) uiEssenceImage1.sprite = img;
         }
+
+        private void UpdateDeathCounterUI(int deaths)
+        {
+            enemyDeaths += deaths; 
+            
+            if (uiDeathCounter) uiDeathCounter.text = enemyDeaths.ToString();
+        }
+        
         #endregion
         
     }

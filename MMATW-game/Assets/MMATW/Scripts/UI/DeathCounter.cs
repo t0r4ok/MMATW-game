@@ -5,12 +5,11 @@ namespace MMATW.Scripts.UI
 {
     public class DeathCounter : MonoBehaviour
     {
-        public TextMeshProUGUI textMeshProUGUI;
-        public int enemyDeath = 0;
+        public int enemyDeaths = 0;
 
-        public void DrawUI()
+        public void SetCounter()
         {
-            textMeshProUGUI.text = enemyDeath.ToString();
+            
         }
     }
 }

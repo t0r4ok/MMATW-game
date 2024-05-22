@@ -20,5 +20,5 @@ MonoBehaviour:
   healthCost: 0
   spellPrefab: {fileID: 5597149410804506533, guid: 422877b02b968394dbc643078508d839,
     type: 3}
-  damage: 20
+  damage: 40
   projectileVelocity: 7.5

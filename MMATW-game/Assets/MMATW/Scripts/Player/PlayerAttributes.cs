@@ -121,7 +121,7 @@ namespace MMATW.Scripts.Player
         {
             while (true) // Repeat indefinitely. 
             {
-                if (playerStamina < maxStamina && !_movement.isWalking)
+                if (playerStamina < maxStamina && !_movement.isSprinting)
                 {
                     RestoreStamina(regenAmount);
                 }

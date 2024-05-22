@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3212761297131002517}
   - component: {fileID: 2906050703007219686}
   - component: {fileID: 1867635384668350996}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: WaterBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5597149410804506533}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.5
@@ -125,6 +125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c73026724795c94d8f549be0742a25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spell: {fileID: 11400000, guid: 9bdc916e74b660145af8c1a068bcea42, type: 2}
 --- !u!82 &1867635384668350996
 AudioSource:
   m_ObjectHideFlags: 0
@@ -232,7 +233,7 @@ GameObject:
   - component: {fileID: 3680990237577538975}
   - component: {fileID: 5968008892711305160}
   - component: {fileID: 5615858902401352797}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
