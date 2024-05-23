@@ -95,7 +95,7 @@ namespace MMATW.Scripts.Enemy
         private void OnTriggerStay(Collider other)
         {
             animator.SetBool(AnimIsAttack, false);
-            if (other.TryGetComponent(out PlayerMovement playerMovement))
+            if (other.GetComponent(typeof(PlayerAttributes)))
             {
                 if (isVisible)
                 {
@@ -142,7 +142,7 @@ namespace MMATW.Scripts.Enemy
 
         private void PatrolUpdate()
         {
-            if (!_isPlayerNoticed && _navMeshAgent.remainingDistance == 0)
+            if (BehaviourMode.AlwaysChasePlayer &&!_isPlayerNoticed && _navMeshAgent.remainingDistance == 0)
             {
                 PickNewPatrolPoint();
             }

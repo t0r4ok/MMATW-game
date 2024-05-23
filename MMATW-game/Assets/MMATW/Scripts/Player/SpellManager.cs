@@ -52,6 +52,8 @@ namespace MMATW.Scripts.Player
 
         public void AddEssense(SpellEssenceObject essence)
         {
+            if (craftingSlots[0]&& craftingSlots[1]) return;
+            
             switch (essence.essenceId)
             {
                 case 0:
