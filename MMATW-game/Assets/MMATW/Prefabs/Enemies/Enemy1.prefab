@@ -136,7 +136,7 @@ MonoBehaviour:
   boostDistance: 0
   damage: 15
   attackColldown: 0
-  animator: {fileID: 0}
+  animator: {fileID: 3872393815070164371}
 --- !u!95 &3872393815070164371
 Animator:
   serializedVersion: 3
