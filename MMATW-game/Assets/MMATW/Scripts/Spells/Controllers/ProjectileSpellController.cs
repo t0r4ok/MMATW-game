@@ -25,9 +25,11 @@ namespace MMATW.Scripts.Spells.Controllers
         }
 
 
-        private void OnCollisionEnter(Collision collision)
+        private void OnTriggerEnter(Collider collision)
         {
             if (collision.gameObject.CompareTag("Player")) return;
+            if (collision.gameObject.CompareTag("Spell")) return;
+
             
             if (collision.gameObject.GetComponent<EnemyHealth>()) spell.OnHit(collision.gameObject);
             FlashAway();

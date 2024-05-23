@@ -95,7 +95,7 @@ namespace MMATW.Scripts.Enemy
         private void OnTriggerStay(Collider other)
         {
             animator.SetBool(AnimIsAttack, false);
-            if (other.TryGetComponent(out PlayerMovement playerMovement))
+            if (other.GetComponent(typeof(PlayerAttributes)))
             {
                 if (isVisible)
                 {
@@ -142,15 +142,18 @@ namespace MMATW.Scripts.Enemy
 
         private void PatrolUpdate()
         {
-            if (!_isPlayerNoticed && _navMeshAgent.remainingDistance == 0)
+            if (patrolPoints.Length >= 1 && !_isPlayerNoticed && _navMeshAgent.remainingDistance == 0)
             {
                 PickNewPatrolPoint();
             }
         }
 
-        public void PickNewPatrolPoint()
+        private void PickNewPatrolPoint()
         {
-            _navMeshAgent.destination = patrolPoints[Random.Range(0, patrolPoints.Length)].position;
+            if (patrolPoints.Length >= 1)
+            {
+                _navMeshAgent.destination = patrolPoints[Random.Range(0, patrolPoints.Length)].position;
+            }
         }
         private void BoostSpeedUpdate()
         {
