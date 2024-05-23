@@ -25,7 +25,7 @@ namespace MMATW.Scripts.Spells.Controllers
         }
 
 
-        private void OnTriggerEnter (Collider collision)
+        private void OnCollisionEnter(Collision collision)
         {
             if (collision.gameObject.CompareTag("Player")) return;
             
