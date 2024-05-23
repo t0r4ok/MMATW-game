@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections;
+using MMATW.Scripts.Enemy;
 using UnityEngine;
 
 namespace MMATW.Scripts.Spells.Controllers
 {
     public class ProjectileSpellController : MonoBehaviour
     {
+        public Projectile spell;
         private Rigidbody _rb;
+        
         
         void Start()
         {
@@ -22,11 +25,14 @@ namespace MMATW.Scripts.Spells.Controllers
         }
 
 
-        private void OnCollisionEnter(Collision other)
+        private void OnTriggerEnter(Collider collision)
         {
-            FlashAway();
+            if (collision.gameObject.CompareTag("Player")) return;
+            if (collision.gameObject.CompareTag("Spell")) return;
+
             
-            // Damage logic goes here!
+            if (collision.gameObject.GetComponent<EnemyHealth>()) spell.OnHit(collision.gameObject);
+            FlashAway();
         }
 
         private IEnumerator LifeCycle()

@@ -10,8 +10,12 @@ namespace MMATW.Scripts.Player
     {
 
         [Header("References")]
+        [SerializeField] private LayerMask groundMask;
+        [SerializeField] private Animator _animator;
         private CharacterController _controller;
         private PlayerAttributes _attributes;
+        private Camera _mainCamera;
+        
         [Header("Preferences")]
         [Tooltip("Sets player speed. Remember that the speed will be multiplied by deltatime.")]
         public float playerSpeed = 5;
@@ -24,18 +28,40 @@ namespace MMATW.Scripts.Player
         [Header("Movement Vars:")]
         public float rotationSpeed = 10;
         public bool isWalking;
+        public bool isSprinting;
+
         [HideInInspector] public bool isGrounded;
         private Vector3 _inputs;
         private Vector3 _velocity;
         private float _horizontalRotation;
         private Vector3 _moveDirection;
 
+        [Header("Debug")] 
+        [SerializeField] private bool debugDrawRotation;
+
+        
+        [Header("Animations:")]
+        private int _isWalkingHash;
+        private int _isJumpingHash;
+        private static readonly int IsWalking = Animator.StringToHash("isWalking");
+        private static readonly int IsJumping = Animator.StringToHash("isJumping");
+        
+        
+        
+        
+        
+
         private void Awake()
         {
             _controller = GetComponent<CharacterController>();
             _attributes = GetComponent<PlayerAttributes>();
+            _animator = GetComponentInChildren<Animator>();
         }
 
+        private void Start()
+        {
+            _mainCamera = Camera.main;
+        }
         private void Update()
         {
             Move();
@@ -60,17 +86,27 @@ namespace MMATW.Scripts.Player
         {
             _inputs = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
             _moveDirection = _inputs * (Time.deltaTime * playerSpeed);
+            isSprinting = false;
+            
+            
+            // Animations:
+            if (!isWalking && _inputs.sqrMagnitude != 0) _animator.SetBool(IsWalking, true);
+            if (isWalking && _inputs.sqrMagnitude == 0) _animator.SetBool(IsWalking, false);
+            if (_velocity.y <= 0) _animator.SetBool(IsJumping, false);
+            
+            
+            
             
             // sprint
-            if (Input.GetKey(KeyCode.LeftShift) && _attributes.playerStamina > 0)
+            if (Input.GetKey(KeyCode.LeftShift) && _attributes.playerStamina > 0 && _inputs.magnitude > 0)
             {
                 var stamina = (staminaUsage / 1.5f) * Time.deltaTime;
                 
-                _moveDirection = _inputs * (Time.deltaTime * playerSprintSpeed);
+                _moveDirection = _inputs * (playerSprintSpeed * Time.deltaTime);
                 _attributes.TakeStamina(stamina);
-                
+                isSprinting = true;
             }
-
+            
             _controller.Move(_moveDirection);
         }
         
@@ -87,6 +123,7 @@ namespace MMATW.Scripts.Player
             {
                 _velocity.y = -jumpForce;
                 _attributes.TakeStamina(20);
+                _animator.SetBool(IsJumping, true);
             }
         }
 
@@ -100,15 +137,40 @@ namespace MMATW.Scripts.Player
             _velocity.y -= gravity * Time.fixedDeltaTime;
             _controller.Move(Vector3.down * (_velocity.y * Time.fixedDeltaTime));
         }
-        
+
         private void Rotation()
         {
-            Quaternion newRotation;
+            var (success, position) = GetMousePosition();
+            if (!success) return;
             
-            if (_inputs.sqrMagnitude == 0) return;
+            // Calculate the direction
+            var direction = position - transform.position;
             
-            newRotation = Quaternion.LookRotation(_moveDirection);
-            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * rotationSpeed);
+            direction.y = 0;
+
+            // Make the transform look in the direction.
+            transform.forward = direction;
+        }
+
+        private (bool success, Vector3 position) GetMousePosition()
+        {
+            Ray ray = _mainCamera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out var hitInfo, Mathf.Infinity, groundMask))
+            {
+                if (debugDrawRotation)
+                {
+                    Debug.DrawRay(transform.position, transform.forward * 3, Color.cyan);
+                    Debug.DrawRay(ray.origin, ray.direction * 3, Color.yellow);
+                }
+                // The Raycast hit something, return with the position.
+                return (success: true, position: hitInfo.point);
+            }
+            else
+            {
+                // The Raycast did not hit anything.
+                return (success: false, position: Vector3.zero);
+            }
         }
     }
 }

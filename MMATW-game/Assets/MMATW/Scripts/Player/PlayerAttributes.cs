@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 
 namespace MMATW.Scripts.Player
@@ -7,9 +8,9 @@ namespace MMATW.Scripts.Player
     public class PlayerAttributes : MonoBehaviour
     {
         private PlayerMovement _movement;
-        
-        [Header("Attributes")] 
-        // TBA
+
+        [Header("Debug:")] 
+        [SerializeField] private bool isInvincible;
         
         [Header("Health:")]
         public int playerHealth; // shouldn't be changed in inspector. Just for testing.
@@ -49,8 +50,7 @@ namespace MMATW.Scripts.Player
             StartCoroutine(RegenStamina(staminaRegenAmount, staminaRegenDelay));
         }
         
-
-        // Regions helps to easily hide some code block at one click instead of closing them all one by one. 
+        
         // You can use this actions to manipulate with player's stats (HP, MP, STM).
         #region ActionsWithPlayer
         // TODO: Make all this shit work with Events.
@@ -64,7 +64,15 @@ namespace MMATW.Scripts.Player
         
         public void DamagePlayer(int damage)
         {
-            playerHealth -= damage;
+            if (isInvincible)
+            {
+                playerHealth -= 0;
+                
+            }
+            else
+            {
+                playerHealth -= damage;
+            }
             
             
             playerHealth = Mathf.Clamp(playerHealth, 0, maxHealth);
@@ -113,7 +121,7 @@ namespace MMATW.Scripts.Player
         {
             while (true) // Repeat indefinitely. 
             {
-                if (playerStamina < maxStamina && !_movement.isWalking)
+                if (playerStamina < maxStamina && !_movement.isSprinting)
                 {
                     RestoreStamina(regenAmount);
                 }

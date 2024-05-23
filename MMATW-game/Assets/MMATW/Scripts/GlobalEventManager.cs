@@ -1,4 +1,6 @@
 using System;
+using TMPro;
+using UnityEngine;
 
 namespace MMATW.Scripts
 {
@@ -9,5 +11,11 @@ namespace MMATW.Scripts
         public static Action<float> OnStaminaChange;
         public static Action<int> OnManaChange;
         
+        public static Action<Sprite> OnSpellChange;
+        
+        public static Action<Sprite> OnEssenceChange0;
+        public static Action<Sprite> OnEssenceChange1;
+
+        public static Action<int> onEnemyDeath;
     }
 }

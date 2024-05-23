@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f89de96e14949abbefe07344e6c8ccf, type: 3}
+  m_Name: ElectroBall
+  m_EditorClassIdentifier: 
+  name: Electroball
+  description: Bzzz sphere
+  uiIcon: {fileID: 21300000, guid: b6a3f07d0052121459dad0e802c13066, type: 3}
+  manaCost: 15
+  staminaCost: 0
+  healthCost: 0
+  spellPrefab: {fileID: 5597149410804506533, guid: ac7dbb589a5e37d48b2f010ba9603fc8,
+    type: 3}
+  damage: 25
+  projectileVelocity: 10

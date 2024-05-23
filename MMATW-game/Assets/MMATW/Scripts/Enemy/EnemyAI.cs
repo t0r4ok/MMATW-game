@@ -1,5 +1,4 @@
 ﻿using MMATW.Scripts.Player;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -15,12 +14,11 @@ namespace MMATW.Scripts.Enemy
         private NavMeshAgent _navMeshAgent;
         private bool _isPlayerNoticed;
 
-        public List<Transform> patrolPoints;
-        public PlayerMovement player;
-        public PlayerAttributes playerAtributes;
+        public Transform[] patrolPoints;
+        public PlayerAttributes player;
 
-        public float vievAngle;
-        public bool _isVisible;
+        public float viewAngle;
+        public bool isVisible;
 
         public float boostSpeed;
         public float boostDistance;
@@ -30,11 +28,13 @@ namespace MMATW.Scripts.Enemy
         private float _attackColldown;
 
         public Animator animator;
+        private static readonly int AnimIsMoving = Animator.StringToHash("Is Moving");
+        private static readonly int AnimIsAttack = Animator.StringToHash("Is Attack");
 
-        
+
         // This script may not work or work with bugs. Will need to be tested.
-        
-        enum BehaviourMode
+
+        private enum BehaviourMode
         {
             SearchForPlayer,
             AlwaysChasePlayer
@@ -43,6 +43,14 @@ namespace MMATW.Scripts.Enemy
         
         private void Start()
         {
+            if (!player) player = (PlayerAttributes)FindObjectOfType(typeof(PlayerAttributes));
+
+            if (patrolPoints == null)
+            {
+                var spawner = FindObjectOfType<EnemySpawner>();
+                patrolPoints = spawner.patrolPoints;
+            }
+            
             _attackColldown = attackColldown;
             InitComponentLinks();
             PickNewPatrolPoint();
@@ -56,10 +64,10 @@ namespace MMATW.Scripts.Enemy
         private void Update()
         {
             _attackColldown -= Time.deltaTime;
-            animator.SetBool("Is Moving", true);
+            animator.SetBool(AnimIsMoving, true);
             if (_navMeshAgent.isStopped)
             {
-                animator.SetBool("Is Moving", false);
+                animator.SetBool(AnimIsMoving, false);
             }
             EnemyLogicMain();
         }
@@ -86,16 +94,16 @@ namespace MMATW.Scripts.Enemy
         }
         private void OnTriggerStay(Collider other)
         {
-            animator.SetBool("Is Attack", false);
-            if (other.TryGetComponent(out PlayerMovement playerMovement))
+            animator.SetBool(AnimIsAttack, false);
+            if (other.GetComponent(typeof(PlayerAttributes)))
             {
-                if (_isVisible)
+                if (isVisible)
                 {
                     if (_attackColldown <= 0)
                     {
-                        playerAtributes.DamagePlayer(damage);
+                        player.DamagePlayer(damage);
                         _attackColldown = attackColldown;
-                        animator.SetBool("Is Attack", true);
+                        animator.SetBool(AnimIsAttack, true);
                     }
                 }
             }
@@ -116,9 +124,9 @@ namespace MMATW.Scripts.Enemy
             
             var direction = player.transform.position - transform.position;
             _isPlayerNoticed = false;
-            _isVisible = false;
+            isVisible = false;
 
-            if (Vector3.Angle(transform.forward, direction) < vievAngle)
+            if (Vector3.Angle(transform.forward, direction) < viewAngle)
             {
                 RaycastHit hit;
                 if (Physics.Raycast(transform.position + Vector3.up, direction, out hit))
@@ -126,7 +134,7 @@ namespace MMATW.Scripts.Enemy
                     if (hit.collider.gameObject == player.gameObject)
                     {
                         _isPlayerNoticed = true;
-                        _isVisible = true;
+                        isVisible = true;
                     }
                 }
             }
@@ -134,15 +142,18 @@ namespace MMATW.Scripts.Enemy
 
         private void PatrolUpdate()
         {
-            if (!_isPlayerNoticed && _navMeshAgent.remainingDistance == 0)
+            if (patrolPoints.Length >= 1 && !_isPlayerNoticed && _navMeshAgent.remainingDistance == 0)
             {
                 PickNewPatrolPoint();
             }
         }
 
-        public void PickNewPatrolPoint()
+        private void PickNewPatrolPoint()
         {
-            _navMeshAgent.destination = patrolPoints[Random.Range(0, patrolPoints.Count)].position;
+            if (patrolPoints.Length >= 1)
+            {
+                _navMeshAgent.destination = patrolPoints[Random.Range(0, patrolPoints.Length)].position;
+            }
         }
         private void BoostSpeedUpdate()
         {

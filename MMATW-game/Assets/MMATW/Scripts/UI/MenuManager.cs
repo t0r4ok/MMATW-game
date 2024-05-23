@@ -1,17 +1,18 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class MenuManager : MonoBehaviour
+namespace MMATW.Scripts.UI
 {
-    public GameObject PauseMenu;
-    private void Update()
+    public class MenuManager : MonoBehaviour
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        public GameObject pauseMenu;
+        private void Update()
         {
-            if (!PauseMenu)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                gameObject.SetActive(false);
+                if (!pauseMenu)
+                {
+                    gameObject.SetActive(false);
+                }
             }
         }
     }

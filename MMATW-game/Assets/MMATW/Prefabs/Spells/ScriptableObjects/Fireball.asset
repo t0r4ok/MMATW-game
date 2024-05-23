@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: FireBall
   description: Fireabll with fire
-  uiIcon: {fileID: 0}
-  manaCost: 5
+  uiIcon: {fileID: 21300000, guid: 58831808ae33e074cb2cecd205afe58d, type: 3}
+  manaCost: 20
   staminaCost: 0
   healthCost: 0
   spellPrefab: {fileID: 5597149410804506533, guid: 422877b02b968394dbc643078508d839,
     type: 3}
-  damage: 5
-  projectileVelocity: 4
+  damage: 40
+  projectileVelocity: 7.5
