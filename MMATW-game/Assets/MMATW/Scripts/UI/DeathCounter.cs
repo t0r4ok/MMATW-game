@@ -1,15 +1,25 @@
-﻿using TMPro;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace MMATW.Scripts.UI
 {
     public class DeathCounter : MonoBehaviour
     {
-        public int enemyDeaths = 0;
+        public int enemyDeathsToWin = 15;
+
+        public GameUIManager gameUIManager;
 
         public void SetCounter()
         {
-            
+            gameUIManager = GetComponent<GameUIManager>();
+        }
+
+        public void Update()
+        {
+            if(gameUIManager.enemyDeaths >= enemyDeathsToWin)
+            {
+                SceneManager.LoadScene("WinScene");
+            }
         }
     }
 }

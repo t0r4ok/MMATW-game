@@ -15,7 +15,7 @@ namespace MMATW.Scripts.UI
         [SerializeField] private Image uiEssenceImage0;
         [SerializeField] private Image uiEssenceImage1;
 
-        private int enemyDeaths = 0;
+        public int enemyDeaths = 0;
         [SerializeField] private TextMeshProUGUI uiDeathCounter;
 
         

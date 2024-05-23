@@ -5963,6 +5963,27 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1472673189605262680, guid: 2aa8df026d5a63d4ab77596d71a4f74d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 67d78f0ad9d32f2458165b79de69f134,
+        type: 3}
+    - target: {fileID: 1472673189605262680, guid: 2aa8df026d5a63d4ab77596d71a4f74d,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.5801887
+      objectReference: {fileID: 0}
+    - target: {fileID: 1472673189605262680, guid: 2aa8df026d5a63d4ab77596d71a4f74d,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.88005394
+      objectReference: {fileID: 0}
+    - target: {fileID: 1472673189605262680, guid: 2aa8df026d5a63d4ab77596d71a4f74d,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1472673189605262681, guid: 2aa8df026d5a63d4ab77596d71a4f74d,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -6093,6 +6114,12 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9112079283726037904, guid: 2aa8df026d5a63d4ab77596d71a4f74d,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 92bc3a974e38775419f9eb2fa23041a7,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2aa8df026d5a63d4ab77596d71a4f74d, type: 3}
 --- !u!114 &732581377 stripped
@@ -9293,6 +9320,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7573970854589948907, guid: 44d77130f72f4a34ba480ffc8389ff04,
+        type: 3}
+      propertyPath: targetPoint
+      value: 
+      objectReference: {fileID: 1633019211}
     - target: {fileID: 7573970855608765180, guid: 44d77130f72f4a34ba480ffc8389ff04,
         type: 3}
       propertyPath: m_IsActive
@@ -9559,6 +9591,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 555781156}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &887900374 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8469637923340667258, guid: e3d5d70d15b08704daf14b77ff78abc6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1088542235}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59a18c1002b247b091758f18315ca2a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &917753391
 GameObject:
   m_ObjectHideFlags: 0
@@ -9807,8 +9851,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1012999341}
+  - component: {fileID: 1012999342}
   m_Layer: 0
-  m_Name: GameObject (1)
+  m_Name: DeathCouter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9828,6 +9873,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1012999342
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1012999340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95be27c3fa9547c418a3cf355077cabd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyDeathsToWin: 1
+  gameUIManager: {fileID: 887900374}
 --- !u!1001 &1067039834
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24979,6 +25038,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f4bc0193724cd943921d722c237e387, type: 3}
+--- !u!4 &1633019211 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7573970855146057975, guid: 44d77130f72f4a34ba480ffc8389ff04,
+    type: 3}
+  m_PrefabInstance: {fileID: 805735703}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1647073919 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4741914331490537974, guid: 18ca50c891ce5e348914c5ac6907a54e,
