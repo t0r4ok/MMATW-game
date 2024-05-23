@@ -9525,7 +9525,7 @@ GameObject:
   - component: {fileID: 4193569226343231826}
   m_Layer: 10
   m_Name: ElectroBall
-  m_TagString: Untagged
+  m_TagString: Spell
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

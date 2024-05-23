@@ -17,6 +17,9 @@ namespace MMATW.Scripts.Player
     
     public class SpellManager : MonoBehaviour
     {
+        [SerializeField] private Sprite emptyEssencePNG;
+        [SerializeField] private Sprite emptySpellPNG;
+
         [Header("Spells:")] 
         public SpellObject selectedSpell;
         [Space]
@@ -40,9 +43,9 @@ namespace MMATW.Scripts.Player
             }
 
             selectedSpell = null;
-            GlobalEventManager.OnSpellChange?.Invoke(null); // TODO: Add image for empty slot.
-            GlobalEventManager.OnEssenceChange0?.Invoke(null); // TODO: Add image for empty slot.
-            GlobalEventManager.OnEssenceChange1?.Invoke(null); // TODO: Add image for empty slot.
+            GlobalEventManager.OnSpellChange?.Invoke(emptySpellPNG); // TODO: Add image for empty slot.
+            GlobalEventManager.OnEssenceChange0?.Invoke(emptyEssencePNG); // TODO: Add image for empty slot.
+            GlobalEventManager.OnEssenceChange1?.Invoke(emptyEssencePNG); // TODO: Add image for empty slot.
 
             _fireEssence = 0;
             _electroEssence = 0;

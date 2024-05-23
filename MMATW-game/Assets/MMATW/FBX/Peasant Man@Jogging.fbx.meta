@@ -1,37 +1,27 @@
 fileFormatVersion: 2
-guid: 47ddca8c61de1d849b47a033ffb4516d
+guid: 4b2b301f29ca71e42be8b7f4ce82b76b
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
   - first:
-      74: 4781951162920444690
-    second: Armature|ArmatureAction
+      74: -203655887218126122
+    second: Jogging
   externalObjects:
   - first:
-      type: UnityEngine:Material
+      type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 61c43f5f935988b419df41dd4843bc3a, type: 2}
+      name: Peasant_Man_diffuse
+    second: {fileID: 2800000, guid: 700672196b8d37c42a601f84d8272822, type: 3}
   - first:
-      type: UnityEngine:Material
+      type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: No Name
-    second: {fileID: 2100000, guid: 105923cda67a5f240ac36b1b20dbb6d9, type: 2}
+      name: Peasant_Man_normal
+    second: {fileID: 2800000, guid: b2a7cf2f11ddcdf48b51f0e83c97412c, type: 3}
   - first:
-      type: UnityEngine:Material
+      type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: "\u0431\u0443\u0431\u043B\u0438\u043A\u0438"
-    second: {fileID: 2100000, guid: d49fba75aa81c314398d85d5228c04c6, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: "\u0433\u043B\u0430\u0437\u0430"
-    second: {fileID: 2100000, guid: b529adb90c1ade644a9da9fd6e859ca5, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: "\u043E\u0441\u043D\u043E\u0432\u0430"
-    second: {fileID: 2100000, guid: d8b093f5d17177a438bcfdfdcb546982, type: 2}
+      name: Peasant_Man_specular
+    second: {fileID: 2800000, guid: 72df970b484ccc54da2a16dd3990a150, type: 3}
   materials:
     materialImportMode: 1
     materialName: 0
@@ -58,7 +48,36 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Jogging
+      takeName: mixamo.com
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 77
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 0
   meshes:
     lODScreenPercentages: []

@@ -142,15 +142,18 @@ namespace MMATW.Scripts.Enemy
 
         private void PatrolUpdate()
         {
-            if (BehaviourMode.AlwaysChasePlayer &&!_isPlayerNoticed && _navMeshAgent.remainingDistance == 0)
+            if (patrolPoints.Length >= 1 && !_isPlayerNoticed && _navMeshAgent.remainingDistance == 0)
             {
                 PickNewPatrolPoint();
             }
         }
 
-        public void PickNewPatrolPoint()
+        private void PickNewPatrolPoint()
         {
-            _navMeshAgent.destination = patrolPoints[Random.Range(0, patrolPoints.Length)].position;
+            if (patrolPoints.Length >= 1)
+            {
+                _navMeshAgent.destination = patrolPoints[Random.Range(0, patrolPoints.Length)].position;
+            }
         }
         private void BoostSpeedUpdate()
         {

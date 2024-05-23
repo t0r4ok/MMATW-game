@@ -11,6 +11,7 @@ namespace MMATW.Scripts.Player
 
         [Header("References")]
         [SerializeField] private LayerMask groundMask;
+        [SerializeField] private Animator _animator;
         private CharacterController _controller;
         private PlayerAttributes _attributes;
         private Camera _mainCamera;
@@ -38,17 +39,29 @@ namespace MMATW.Scripts.Player
         [Header("Debug")] 
         [SerializeField] private bool debugDrawRotation;
 
-        private void Start()
-        {
-            _mainCamera = Camera.main;
-        }
+        
+        [Header("Animations:")]
+        private int _isWalkingHash;
+        private int _isJumpingHash;
+        private static readonly int IsWalking = Animator.StringToHash("isWalking");
+        private static readonly int IsJumping = Animator.StringToHash("isJumping");
+        
+        
+        
+        
+        
 
         private void Awake()
         {
             _controller = GetComponent<CharacterController>();
             _attributes = GetComponent<PlayerAttributes>();
+            _animator = GetComponentInChildren<Animator>();
         }
 
+        private void Start()
+        {
+            _mainCamera = Camera.main;
+        }
         private void Update()
         {
             Move();
@@ -74,6 +87,14 @@ namespace MMATW.Scripts.Player
             _inputs = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
             _moveDirection = _inputs * (Time.deltaTime * playerSpeed);
             isSprinting = false;
+            
+            
+            // Animations:
+            if (!isWalking && _inputs.sqrMagnitude != 0) _animator.SetBool(IsWalking, true);
+            if (isWalking && _inputs.sqrMagnitude == 0) _animator.SetBool(IsWalking, false);
+            if (_velocity.y <= 0) _animator.SetBool(IsJumping, false);
+            
+            
             
             
             // sprint
@@ -102,6 +123,7 @@ namespace MMATW.Scripts.Player
             {
                 _velocity.y = -jumpForce;
                 _attributes.TakeStamina(20);
+                _animator.SetBool(IsJumping, true);
             }
         }
 
@@ -123,9 +145,7 @@ namespace MMATW.Scripts.Player
             
             // Calculate the direction
             var direction = position - transform.position;
-
-            // You might want to delete this line.
-            // Ignore the height difference.
+            
             direction.y = 0;
 
             // Make the transform look in the direction.
