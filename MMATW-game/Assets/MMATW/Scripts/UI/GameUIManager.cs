@@ -15,10 +15,11 @@ namespace MMATW.Scripts.UI
         [SerializeField] private Image uiEssenceImage0;
         [SerializeField] private Image uiEssenceImage1;
 
-        private int enemyDeaths = 0;
+        public int enemyDeaths = 0;
         [SerializeField] private TextMeshProUGUI uiDeathCounter;
+        [SerializeField] private TextMeshProUGUI uiEndScore;
 
-        
+
         private void Start() // Subscribing to events.
         {
             GlobalEventManager.OnHealthChange += UpdateHealthUI;
@@ -43,6 +44,10 @@ namespace MMATW.Scripts.UI
             GlobalEventManager.OnEssenceChange1 -= UpdateEssenceUI_Second;
             
             GlobalEventManager.onEnemyDeath -= UpdateDeathCounterUI;
+        }
+        void Awake()
+        {
+            DontDestroyOnLoad(gameObject);
         }
 
 
