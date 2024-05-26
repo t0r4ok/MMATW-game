@@ -8,8 +8,12 @@ namespace MMATW.Scripts.UI
         public int enemyDeaths = 0;
 
         public void SetCounter()
-        {
+        {   
             
+        }
+        void Awake()
+        {
+            DontDestroyOnLoad(gameObject);
         }
     }
 }
